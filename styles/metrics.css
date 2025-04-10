@@ -1,0 +1,66 @@
+/* Estilos para a seção de Métricas de Sucesso */
+
+#metrics {
+    background-color: var(--primary-color);
+    background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--text-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.metrics-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md) 0;
+}
+
+.metric {
+    text-align: center;
+    padding: var(--spacing-md);
+    transition: var(--transition-normal);
+    transform: translateY(0);
+}
+
+.metric:hover {
+    transform: translateY(-10px);
+}
+
+.metric h3 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1;
+}
+
+.metric p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Animação para os contadores */
+.counter {
+    display: inline-block;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .metrics-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .metric h3 {
+        font-size: 2.8rem;
+    }
+}
+
+.metrics-background,
+.ai-dots,
+.subtle-grid-overlay,
+.subtle-grid-lines,
+.parallax-layer {
+    pointer-events: none;
+}

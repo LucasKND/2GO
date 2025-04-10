@@ -1,0 +1,81 @@
+/* Estilos para o cursor personalizado */
+
+html, body {
+    cursor: none;
+}
+
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 58, 58, 0.5);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    z-index: 9999;
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.cursor.grow {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 58, 58, 0.3);
+}
+
+.cursor-dot {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    transition: transform 0.1s;
+}
+
+.cursor-text {
+    position: fixed;
+    pointer-events: none;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10001;
+}
+
+.cursor-text.active {
+    opacity: 1;
+}
+
+/* Ajustes para dispositivos móveis e touch */
+@media (max-width: 768px), (pointer: coarse) {
+    .cursor, .cursor-dot, .cursor-text {
+        display: none;
+    }
+    
+    html, body {
+        cursor: auto;
+    }
+    
+    a, button, .interactive {
+        cursor: pointer;
+    }
+}
+
+/* Cursor personalizado - DESATIVADO */
+
+.cursor-container {
+    display: none; /* Ocultar completamente o container do cursor personalizado */
+}
+
+body {
+    cursor: auto; /* Restaurar cursor padrão */
+}
+
+a, button, .interactive, .expertise-item, .service-card {
+    cursor: pointer; /* Usar cursor pointer para elementos interativos */
+}

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgênciaDigital | Marketing & Tecnologia</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="cursor-container" style="display: none;">
+        <div class="cursor-dot"></div>
+        <div class="cursor-trail"></div>
+        <div class="cursor-text"></div>
+    </div>
+    
+    <!-- Header & Hero Section -->
+    <header id="home">
+        <div class="hero-canvas-container">
+            <canvas id="hero-canvas"></canvas>
+            <div class="nebula-overlay"></div>
+        </div>
+        
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/logo.svg" alt="AgênciaDigital Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#team">Time</a></li>
+                    <li><a href="#contact" class="nav-cta">Contato</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Transformamos <span>ideias</span> em resultados digitais</h1>
+                    <p class="hero-description">Potencialize seu negócio com estratégias que convertem, tecnologias que escalam e designs que conquistam. Enquanto outros prometem, nós entregamos seu resultado.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="cta-button primary-button">Iniciar Projeto</a>
+                        <a href="#services" class="cta-button secondary-button">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll-indicator">
+            <div class="scroll-arrow"></div>
+            <div class="scroll-text">Explore</div>
+        </div>
+        
+        <div class="hero-transition-effect"></div>
+    </header>
+
+    <!-- Métricas de Sucesso - Minimalista com fundo harmonizado -->
+    <section id="metrics" class="section-padding match-services-bg">
+        <div class="metrics-background">
+            <div class="ai-dots"></div>
+            <div class="subtle-grid-overlay">
+                <div class="subtle-grid-lines horizontal"></div>
+                <div class="subtle-grid-lines vertical"></div>
+            </div>
+            <div class="parallax-layer parallax-layer-1"></div>
+            <div class="parallax-layer parallax-layer-2"></div>
+        </div>
+        
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-card" data-depth="0.2">
+                    <span class="counter" data-target="27000">0</span>
+                    <span class="metric-suffix">+</span>
+                    <h3 class="metric-title">Projetos</h3>
+                </div>
+                
+                <div class="metric-card" data-depth="0.4">
+                    <span class="counter" data-target="100">0</span>
+                    <span class="metric-suffix">+</span>
+                    <h3 class="metric-title">Projetos entregues</h3>
+                </div>
+                
+                <div class="metric-card" data-depth="0.3">
+                    <span class="counter" data-target="13">0</span>
+                    <h3 class="metric-title">Anos de experiência</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal-element">Escolha seu <span class="gradient-text">Destino</span></h2>
+            <p class="section-subtitle reveal-element">Soluções completas para impulsionar sua presença digital</p>
+            
+            <div class="services-grid">
+                <div class="service-card reveal-element">
+                    <span></span>
+                    <div class="service-content">
+                        <h3>Branding</h3>
+                        <p>O branding constrói uma personalidade para a marca, deixando-a mais próxima dos clientes. Isso significa contar sua história, elevar o benefício percebido em relação ao seu produto ou serviço e demonstrar seus valores.</p>
+                        <a href="#contact">Saiba mais</a>
+                    </div>
+                </div>
+                
+                <div class="service-card reveal-element">
+                    <span></span>
+                    <div class="service-content">
+                        <h3>Rebranding</h3>
+                        <p>Você conhece alguma marca que mudou de posicionamento, a logo ou, até mesmo, as cores? O rebranding é como uma otimização da imagem que o público tem sobre a empresa.</p>
+                        <a href="#contact">Saiba mais</a>
+                    </div>
+                </div>
+                
+                <div class="service-card reveal-element">
+                    <span></span>
+                    <div class="service-content">
+                        <h3>Eventos</h3>
+                        <p>Realizar eventos relacionados a uma empresa ou uma marca, requer planejamento prévio em relação a inúmeros aspectos quanto à organização.</p>
+                        <a href="#contact">Saiba mais</a>
+                    </div>
+                </div>
+                
+                <div class="service-card reveal-element">
+                    <span></span>
+                    <div class="service-content">
+                        <h3>Gestão de Redes Sociais</h3>
+                        <p>Além do dinamismo e da velocidade, o marketing nas mídias sociais se mostra mais vantajoso por conta de um elemento: a assertividade.</p>
+                        <a href="#contact">Saiba mais</a>
+                    </div>
+                </div>
+                
+                <div class="service-card reveal-element">
+                    <span></span>
+                    <div class="service-content">
+                        <h3>Sites</h3>
+                        <p>Um site com o próprio domínio e segmento, é imprescindível para facilitar a comunicação entre a sua empresa e seus clientes!</p>
+                        <a href="#contact">Saiba mais</a>
+                    </div>
+                </div>
+                
+                <div class="service-card reveal-element">
+                    <span></span>
+                    <div class="service-content">
+                        <h3>Mentoria</h3>
+                        <p>A Mentoria é indicada para empresas e profissionais que estejam começando a investir no digital ou se sentem perdidos ou estagnados nas áreas de comunicação, marketing e vendas.</p>
+                        <a href="#contact">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise e Qualidade -->
+   <!-- <section id="expertise" class="section-padding creative-section">
+        <div class="webgl-background" id="expertise-background"></div>
+        <div class="noise-overlay"></div>
+        
+        <div class="container">
+            <h2 class="section-title reveal-element glitch-title" data-text="Nossa Expertise">Nossa Expertise</h2>
+            <p class="section-subtitle reveal-element split-text">Combinamos tecnologia e criatividade para entregar resultados excepcionais</p>
+            
+            <div class="expertise-asymmetric-grid">
+                <div class="expertise-item reveal-element perspective-card" data-depth="0.2">
+                    <div class="expertise-item-content">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-laptop-code"></i>
+                            <div class="icon-particle-system"></div>
+                        </div>
+                        <h3 class="expertise-title liquid-text">Tecnologia</h3>
+                        <div class="expertise-hover-reveal">
+                            <p>Soluções tech-driven com código limpo e performance excepcional.</p>
+                        </div>
+                    </div>
+                    <div class="card-backdrop"></div>
+                </div>
+                
+                <div class="expertise-item reveal-element perspective-card" data-depth="0.4">
+                    <div class="expertise-item-content">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-paint-brush"></i>
+                            <div class="icon-particle-system"></div>
+                        </div>
+                        <h3 class="expertise-title liquid-text">Design</h3>
+                        <div class="expertise-hover-reveal">
+                            <p>Interfaces impactantes que comunicam sua identidade visual.</p>
+                        </div>
+                    </div>
+                    <div class="card-backdrop"></div>
+                </div>
+                
+                <div class="expertise-item reveal-element perspective-card" data-depth="0.3">
+                    <div class="expertise-item-content">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-bullseye"></i>
+                            <div class="icon-particle-system"></div>
+                        </div>
+                        <h3 class="expertise-title liquid-text">Estratégia</h3>
+                        <div class="expertise-hover-reveal">
+                            <p>Planejamento orientado por dados para maximizar resultados.</p>
+                        </div>
+                    </div>
+                    <div class="card-backdrop"></div>
+                </div>
+                
+                <div class="expertise-item reveal-element perspective-card" data-depth="0.5">
+                    <div class="expertise-item-content">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-comment-dollar"></i>
+                            <div class="icon-particle-system"></div>
+                        </div>
+                        <h3 class="expertise-title liquid-text">Conversão</h3>
+                        <div class="expertise-hover-reveal">
+                            <p>Técnicas avançadas para transformar visitantes em clientes.</p>
+                        </div>
+                    </div>
+                    <div class="card-backdrop"></div>
+                </div>
+                
+                <div class="expertise-item reveal-element perspective-card" data-depth="0.2">
+                    <div class="expertise-item-content">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-chart-bar"></i>
+                            <div class="icon-particle-system"></div>
+                        </div>
+                        <h3 class="expertise-title liquid-text">Analytics</h3>
+                        <div class="expertise-hover-reveal">
+                            <p>Insights acionáveis extraídos de análises profundas de dados.</p>
+                        </div>
+                    </div>
+                    <div class="card-backdrop"></div>
+                </div>
+                
+                <div class="expertise-item reveal-element perspective-card" data-depth="0.3">
+                    <div class="expertise-item-content">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-users-cog"></i>
+                            <div class="icon-particle-system"></div>
+                        </div>
+                        <h3 class="expertise-title liquid-text">UX/UI</h3>
+                        <div class="expertise-hover-reveal">
+                            <p>Experiências intuitivas que encantam e retêm usuários.</p>
+                        </div>
+                    </div>
+                    <div class="card-backdrop"></div>
+                </div>
+            </div>-->
+            
+          <!--  <div class="methodology reveal-element distortion-content">
+                <div class="methodology-text-wrapper">
+                    <h3 class="animated-underline">Nossa Metodologia</h3>
+                    <p class="split-chars">Trabalhamos com um processo ágil e transparente, focado em resultados mensuráveis. Cada projeto passa por etapas cuidadosamente planejadas, desde a análise inicial até a implementação e otimização contínua.</p>
+                </div>
+                <div class="methodology-visual">
+                    <div class="methodology-flow">
+                        <div class="flow-item" data-step="01"><span>Descoberta</span></div>
+                        <div class="flow-item" data-step="02"><span>Estratégia</span></div>
+                        <div class="flow-item" data-step="03"><span>Criação</span></div>
+                        <div class="flow-item" data-step="04"><span>Desenvolvimento</span></div>
+                        <div class="flow-item" data-step="05"><span>Lançamento</span></div>
+                        <div class="flow-item" data-step="06"><span>Otimização</span></div>
+                        <div class="flow-connector"></div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        
+        <div class="floating-elements">
+            <div class="floating-el" data-speed="1.2"></div>
+            <div class="floating-el" data-speed="0.8"></div>
+            <div class="floating-el" data-speed="1.5"></div>
+            <div class="floating-el" data-speed="0.9"></div>
+            <div class="floating-el" data-speed="1.1"></div>
+        </div>
+    </section>
+
+    <!-- Cases de Sucesso -->
+    <section id="cases" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal-element">Clientes</h2>
+            <p class="section-subtitle reveal-element">Empresas que confiaram em nossa expertise</p>
+            
+            <div class="clients-container">
+                <div class="clients-track">
+                    <!-- Primeiro conjunto de logos -->
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client1.svg" alt="Cliente 1">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client2.svg" alt="Cliente 2">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client3.svg" alt="Cliente 3">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client4.svg" alt="Cliente 4">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client5.svg" alt="Cliente 5">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client6.svg" alt="Cliente 6">
+                    </div>
+                    
+                    <!-- Segundo conjunto -->
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client1.svg" alt="Cliente 1">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client2.svg" alt="Cliente 2">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client3.svg" alt="Cliente 3">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client4.svg" alt="Cliente 4">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client5.svg" alt="Cliente 5">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client6.svg" alt="Cliente 6">
+                    </div>
+                    
+                    <!-- Terceiro conjunto -->
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client1.svg" alt="Cliente 1">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client2.svg" alt="Cliente 2">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client3.svg" alt="Cliente 3">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client4.svg" alt="Cliente 4">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client5.svg" alt="Cliente 5">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client6.svg" alt="Cliente 6">
+                    </div>
+                    
+                    <!-- Quarto conjunto -->
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client1.svg" alt="Cliente 1">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client2.svg" alt="Cliente 2">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client3.svg" alt="Cliente 3">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client4.svg" alt="Cliente 4">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client5.svg" alt="Cliente 5">
+                    </div>
+                    <div class="client-logo">
+                        <img src="assets/images/clients/client6.svg" alt="Cliente 6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Time -->
+    <section id="team" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal-element">Nosso Time</h2>
+            <p class="section-subtitle reveal-element">Conheça os especialistas por trás dos resultados</p>
+            <div class="team-grid">
+                <div class="team-member reveal-element">
+                    <div class="member-photo">
+                        <img src="assets/images/team/member1.jpg" alt="Membro da equipe 1">
+                    </div>
+                    <div class="member-info">
+                        <h3>Ana Silva</h3>
+                        <p>CEO & Estrategista Digital</p>
+                        <div class="member-bio">
+                            <p>Especialista em marketing digital com mais de 10 anos de experiência em projetos internacionais.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member reveal-element">
+                    <div class="member-photo">
+                        <img src="assets/images/team/member2.jpg" alt="Membro da equipe 2">
+                    </div>
+                    <div class="member-info">
+                        <h3>Ricardo Oliveira</h3>
+                        <p>Diretor de Tecnologia</p>
+                        <div class="member-bio">
+                            <p>Desenvolvedor full-stack com foco em soluções escaláveis e experiências digitais inovadoras.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member reveal-element">
+                    <div class="member-photo">
+                        <img src="assets/images/team/member3.jpg" alt="Membro da equipe 3">
+                    </div>
+                    <div class="member-info">
+                        <h3>Juliana Santos</h3>
+                        <p>Diretora Criativa</p>
+                        <div class="member-bio">
+                            <p>Designer premiada com olhar apurado para estética e experiências de usuário memoráveis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member reveal-element">
+                    <div class="member-photo">
+                        <img src="assets/images/team/member4.jpg" alt="Membro da equipe 4">
+                    </div>
+                    <div class="member-info">
+                        <h3>Marcos Pereira</h3>
+                        <p>Especialista em SEO</p>
+                        <div class="member-bio">
+                            <p>Estrategista com histórico comprovado em colocar empresas nas primeiras posições do Google.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal-element">O que dizem nossos clientes</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-wrapper">
+                    <div class="testimonial active">
+                        <div class="testimonial-content">
+                            <p>"A equipe da AgênciaDigital transformou completamente nossa presença online. Os resultados superaram todas as nossas expectativas!"</p>
+                            <div class="testimonial-author">
+                                <img src="assets/images/testimonials/client1.jpg" alt="Cliente depoimento">
+                                <div>
+                                    <h4>Carlos Mendes</h4>
+                                    <p>CEO, Empresa XYZ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Profissionais extremamente competentes e dedicados. Nossa empresa cresceu 200% no digital após implementarmos a estratégia sugerida."</p>
+                            <div class="testimonial-author">
+                                <img src="assets/images/testimonials/client2.jpg" alt="Cliente depoimento">
+                                <div>
+                                    <h4>Fernanda Costa</h4>
+                                    <p>Diretora de Marketing, Empresa ABC</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Comunicação clara, entregas pontuais e resultados consistentes. Não poderíamos estar mais satisfeitos com a parceria!"</p>
+                            <div class="testimonial-author">
+                                <img src="assets/images/testimonials/client3.jpg" alt="Cliente depoimento">
+                                <div>
+                                    <h4>Roberto Almeida</h4>
+                                    <p>Fundador, Startup DEF</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Principal -->
+    <section id="main-cta" class="section-padding">
+        <div class="container">
+            <div class="cta-container reveal-element">
+                <h2>Pronto para decolar?</h2>
+                <p>Transforme sua presença digital com estratégias que realmente funcionam. O futuro do seu negócio começa agora.</p>
+                <a href="#contact" class="cta-button">Vamos conversar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal-element">Entre em Contato</h2>
+            <p class="section-subtitle reveal-element">Estamos ansiosos para transformar seus objetivos em resultados</p>
+            <div class="contact-container">
+                <div class="contact-form reveal-element">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Enviar mensagem</button>
+                    </form>
+                </div>
+                <div class="contact-info reveal-element">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Av. Paulista, 1000, São Paulo - SP</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+55 (11) 99999-9999</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>contato@agenciadigital.com</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/logo.svg" alt="AgênciaDigital Logo">
+                </div>
+                <div class="footer-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0976951333436!2d-46.6585646!3d-23.5617348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAvenida%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1sen!2sbr!4v1625764215694!5m2!1sen!2sbr" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h3>Links rápidos</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Serviços</a></li>
+                            <li><a href="#cases">Clientes</a></li>
+                            <li><a href="#team">Time</a></li>
+                            <li><a href="#contact">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-legal">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Política de Privacidade</a></li>
+                            <li><a href="#">Termos de Uso</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> AgênciaDigital. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#home" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/testimonials.js"></script>
+    <script src="js/form-validation.js"></script>
+    <script src="js/hero-experience.js"></script>
+    <script src="js/advanced-cursor.js"></script>
+    <script src="js/purpose-narrative.js"></script>
+</body>
+</html>

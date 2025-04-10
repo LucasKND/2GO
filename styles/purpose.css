@@ -1,0 +1,86 @@
+/* Estilos para a seção de Propósito e Diferencial */
+
+#purpose {
+    background-color: var(--bg-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.card {
+    background-color: var(--bg-dark);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    flex: 1;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary-color);
+    transform: translateY(-100%);
+    transition: var(--transition-normal);
+    z-index: -1;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card:hover::before {
+    transform: translateY(0);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .cards-container {
+        flex-wrap: wrap;
+    }
+    
+    .card {
+        flex-basis: calc(50% - var(--spacing-md));
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        flex-direction: column;
+    }
+    
+    .card {
+        width: 100%;
+    }
+}

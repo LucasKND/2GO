@@ -1,0 +1,484 @@
+/* Hero Section com efeitos 3D minimalistas */
+
+header {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.nebula-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Remover .data-streams que não é mais necessário */
+
+.hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos para o título com efeito glitch */
+.glitch-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.word-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    margin-right: 0.5rem;
+}
+
+.word {
+    display: inline-block;
+    transform-origin: center center;
+}
+
+.highlight {
+    color: var(--primary-color);
+    position: relative;
+}
+
+.highlight:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background: var(--primary-color);
+    bottom: -5px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: highlightAnimation 1.5s forwards 1s;
+}
+
+@keyframes highlightAnimation {
+    to { transform: scaleX(1); }
+}
+
+/* Texto revelado com animação */
+.reveal-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Botão CTA com efeitos de energia */
+.cta-wrapper {
+    position: relative;
+    display: inline-block;
+    z-index: 10;
+}
+
+.energy-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    background: var(--primary-color);
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(255, 58, 58, 0.5);
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+}
+
+.button-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.button-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,58,58,0) 70%);
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.3s;
+}
+
+.energy-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 58, 58, 0.7);
+}
+
+.energy-button:hover .button-glow {
+    opacity: 0.5;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+/* Container do foguete 3D */
+.hero-rocket-container {
+    position: relative;
+    width: 40%;
+    z-index: 5;
+}
+
+#rocket-3d-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.rocket-trail {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 40px;
+    height: 200px;
+    transform: translateX(-50%);
+    z-index: -1;
+    opacity: 0.7;
+    filter: blur(5px);
+    background: linear-gradient(to top, 
+        rgba(255, 58, 58, 0) 0%, 
+        rgba(255, 58, 58, 0.2) 20%, 
+        rgba(255, 58, 58, 0.5) 40%, 
+        rgba(255, 58, 58, 0.8) 60%, 
+        rgba(255, 102, 102, 0.5) 80%, 
+        rgba(255, 152, 152, 0.2) 100%);
+}
+
+/* Indicador de scroll */
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.scroll-arrow {
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--text-light);
+    border-radius: 15px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.scroll-arrow:before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: var(--text-light);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: scrollDown 2s infinite;
+}
+
+.scroll-text {
+    color: var(--text-light);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@keyframes scrollDown {
+    0% { top: 8px; opacity: 1; }
+    70% { top: 30px; opacity: 0; }
+    100% { top: 8px; opacity: 0; }
+}
+
+.hero-scroll-indicator:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+/* Transição entre seções */
+.hero-transition-effect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 10;
+    background: linear-gradient(to top, var(--bg-dark) 0%, rgba(18, 18, 18, 0) 100%);
+}
+
+/* Cursor personalizado */
+.cursor-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 58, 58, 0.8);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+
+.cursor-trail {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 58, 58, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9998;
+    transition: width 0.3s, height 0.3s;
+}
+
+.cursor-text {
+    position: fixed;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 9999;
+}
+
+body {
+    cursor: none;
+}
+
+a, button, .interactive {
+    cursor: none;
+}
+
+/* Estilos para o conteúdo de texto da hero */
+.hero-content {
+    color: var(--text-light);
+    max-width: 600px;
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards 0.5s;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.8s;
+}
+
+.hero-title span {
+    color: var(--primary-color);
+    position: relative;
+}
+
+.hero-title span::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: lineGrow 1.2s forwards 1.6s;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 1.1s;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 1.4s;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative; /* Importante para o efeito de seguir o cursor */
+    transform: translate(0, 0); /* Valor inicial para a transformação */
+    will-change: transform; /* Otimiza as animações de transformação */
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: 0 5px 15px rgba(255, 58, 58, 0.3);
+}
+
+.primary-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 58, 58, 0.4);
+}
+
+.secondary-button {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--text-light);
+}
+
+.secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes lineGrow {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* Responsividade para o conteúdo da hero */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content {
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .cta-button {
+        width: 100%;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .hero .container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-scroll-indicator {
+        bottom: 20px;
+    }
+}

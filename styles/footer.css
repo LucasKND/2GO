@@ -1,0 +1,89 @@
+/* Estilos para o Footer */
+
+footer {
+    background-color: var(--bg-darker);
+    padding: var(--spacing-lg) 0 var(--spacing-sm);
+    position: relative;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer-logo img {
+    max-width: 150px;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-map {
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.footer-nav h3,
+.footer-legal h3 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary-color);
+}
+
+.footer-nav ul,
+.footer-legal ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-nav a,
+.footer-legal a {
+    color: var(--text-muted);
+    transition: var(--transition-normal);
+}
+
+.footer-nav a:hover,
+.footer-legal a:hover {
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--accent-light);
+    padding-top: var(--spacing-sm);
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .footer-logo {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-links {
+        margin-top: var(--spacing-md);
+    }
+}

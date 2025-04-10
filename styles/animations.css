@@ -1,0 +1,119 @@
+/* Arquivos de animações e keyframes */
+
+/* Animação de flutuação (para logo e elementos hero) */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Animação de pulsar (para CTAs e botões de destaque) */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 58, 58, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 58, 58, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 58, 58, 0);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Animação de fade in para elementos que aparecem na tela */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Animação de slide para o menu mobile */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.slide-in-right {
+    animation: slideInRight 0.5s ease-in-out;
+}
+
+/* Animação de carregamento */
+@keyframes loadingCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    animation: loadingCircle 1.2s infinite linear;
+}
+
+/* Microinterações para botões */
+.btn-hover-effect {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-hover-effect:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.btn-hover-effect:hover:after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Microinterações para cards e elementos com hover */
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-rotate {
+    transition: transform 0.5s ease;
+}
+
+.hover-rotate:hover {
+    transform: rotate(5deg);
+}

@@ -1,0 +1,306 @@
+/* Estilos para a seção de Serviços */
+
+/* Modern Glass-Morphism Service Cards */
+#services {
+    position: relative;
+    overflow: hidden;
+    background: inherit;
+    position: relative;
+}
+
+/* Simple subtle background overlay */
+#services::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(var(--primary-dark), 0.05) 0%, 
+        rgba(var(--primary-color), 0.02) 100%
+    );
+    z-index: var(--z-tooltip);
+}
+
+/* Gradient transition at the bottom of services section */
+#services::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to bottom, 
+        transparent 0%,
+        var(--cases-bg-color, inherit) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.services-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px 0;
+    position: relative;
+    z-index: 3;
+}
+
+.service-card {
+    position: relative;
+    width: 320px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 30px;
+    transition: 0.5s;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    border-radius: 8px;
+    transform: skewX(15deg);
+    transition: 0.5s;
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    border-radius: 8px;
+    transform: skewX(15deg);
+    transition: 0.5s;
+    filter: blur(30px);
+}
+
+.service-card:hover::before,
+.service-card:hover::after {
+    transform: skewX(0deg);
+    left: 20px;
+    width: calc(100% - 90px);
+}
+
+/* Generating different gradient colors for each card */
+.service-card:nth-child(1)::before,
+.service-card:nth-child(1)::after {
+    background: linear-gradient(315deg, #cc0000, #ff0058);
+}
+
+.service-card:nth-child(2)::before,
+.service-card:nth-child(2)::after {
+    background: linear-gradient(315deg, #ff3300, #cc0000);
+}
+
+.service-card:nth-child(3)::before,
+.service-card:nth-child(3)::after {
+    background: linear-gradient(315deg, #cc0000, #990000);
+}
+
+.service-card:nth-child(4)::before,
+.service-card:nth-child(4)::after {
+    background: linear-gradient(315deg, #ff0058, #cc0000);
+}
+
+.service-card:nth-child(5)::before,
+.service-card:nth-child(5)::after {
+    background: linear-gradient(315deg, #cc0000, #ff3333);
+}
+
+.service-card:nth-child(6)::before,
+.service-card:nth-child(6)::after {
+    background: linear-gradient(315deg, #a10000, #cc0000);
+}
+
+.service-card span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.service-card span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: 0.1s;
+    animation: animate 2s ease-in-out infinite;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.service-card:hover span::before {
+    top: -50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+}
+
+.service-card span::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: 0.5s;
+    animation: animate 2s ease-in-out infinite;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    animation-delay: -1s;
+}
+
+.service-card:hover span::after {
+    bottom: -50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+}
+
+@keyframes animate {
+    0%, 100% {
+        transform: translateY(10px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.service-content {
+    position: relative;
+    left: 0;
+    padding: 20px 40px;
+    background: rgba(var(--bg-light), 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius-md);
+    z-index: 1;
+    transition: var(--transition-normal);
+    color: var(--text-light);
+}
+
+.service-card:hover .service-content {
+    left: -25px;
+    padding: 60px 40px;
+}
+
+.service-content h3 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.service-content p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    line-height: 1.4em;
+}
+
+.service-content a {
+    display: inline-block;
+    font-size: 1.1em;
+    color: #111;
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.service-content a:hover {
+    background: #ff3333;
+    color: #fff;
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+}
+
+/* Service icon styling */
+.service-icon {
+    display: none; /* Hide the original icon container */
+}
+
+/* Make section title and subtitle visible over the dark background */
+#services .section-title,
+#services .section-subtitle {
+    color: #fff;
+    position: relative;
+    z-index: 3;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Animated gradient for "Destino" in the title - matching the metrics red color */
+.gradient-text {
+    background: linear-gradient(
+        to right,
+        #ff3333,
+        #cc0000,
+        #ff3333,
+        #800000,
+        #ff3333
+    );
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 8s linear infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Make section title white static text */
+#services .section-title {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 3;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .service-card {
+        width: 280px;
+        height: 380px;
+        margin: 30px 20px;
+    }
+    
+    .service-content h3 {
+        font-size: 1.8em;
+    }
+    
+    .service-content p {
+        font-size: 1em;
+    }
+}
