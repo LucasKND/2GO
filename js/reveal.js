@@ -1,20 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Select all reveal elements
     const revealElements = document.querySelectorAll('.reveal-element');
     
-    function reveal() {
-        for (let i = 0; i < revealElements.length; i++) {
-            const windowHeight = window.innerHeight;
-            const elementTop = revealElements[i].getBoundingClientRect().top;
-            const elementVisible = 150;
-            
-            if (elementTop < windowHeight - elementVisible) {
-                revealElements[i].classList.add('active');
+    // Create observer options
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    };
+    
+    // Callback for intersection observer
+    const revealCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
             }
-        }
-    }
+        });
+    };
     
-    window.addEventListener('scroll', reveal);
+    // Create observer
+    const observer = new IntersectionObserver(revealCallback, options);
     
-    // Para garantir que elementos visíveis na carga da página sejam revelados
-    reveal();
+    // Observe each reveal element
+    revealElements.forEach(el => {
+        observer.observe(el);
+    });
 });

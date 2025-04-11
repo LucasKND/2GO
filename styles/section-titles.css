@@ -1,0 +1,76 @@
+/* Professional Section Titles and Animations */
+.section-title {
+    position: relative;
+    font-size: 3.5rem;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.section-title .gradient-text {
+    background: linear-gradient(90deg, #C62828, #8E0000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: #424242;
+    margin-bottom: 2rem;
+}
+
+.section-subtitle .highlight {
+    color: #C62828;
+}
+
+/* Animation keyframes preserved for hero section only */
+@keyframes titleReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subtitleReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subtleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Reveal animations for sections */
+.reveal-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-element.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Professional buttons - preserved */
+.cta-button.primary-button {
+    background: #B71C1C;
+    border: 1px solid #8E0000;
+    color: white;
+}
+
+.cta-button.secondary-button {
+    background: transparent;
+    border: 1px solid #D32F2F;
+    color: #8E0000;
+}
+
+/* Special styles only for hero section */
+.hero-content .section-title,
+.hero-content .section-subtitle {
+    /* Special hero styling here */
+}

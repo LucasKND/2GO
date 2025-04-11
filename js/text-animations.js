@@ -1,6 +1,6 @@
 /**
  * Animações de texto avançadas
- * Implementa efeitos de glitch, divisão, onda e reconstrução de texto
+ * Implementa efeitos de glitch, divisão, onda, reconstrução de texto e repulsão de letras
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -67,6 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Efeito de máquina de escrever para textos selecionados
     initTypewriterEffect();
+    
+    // Efeito de repulsão de letras - novo efeito
+    initLetterRepulsionEffect();
 });
 
 // Efeito de glitch para títulos
@@ -273,9 +276,115 @@ function initTypewriterEffect() {
     });
 }
 
+// Novo efeito de repulsão de letras com suporte a gradiente
+function initLetterRepulsionEffect() {
+    console.log("Inicializando o efeito de repulsão de texto");
+    
+    const repulsionElements = document.querySelectorAll('.repulsion-text');
+    console.log("Elementos encontrados:", repulsionElements.length);
+    
+    repulsionElements.forEach(element => {
+        // Verificar se o elemento já foi processado para evitar duplicação
+        if (element.classList.contains('repulsion-processed')) {
+            return;
+        }
+        
+        // Obter o texto original
+        const originalText = element.innerText || element.textContent;
+        console.log("Texto para repulsão:", originalText);
+        
+        // Guardar o estilo de background original para aplicar a cada letra
+        const computedStyle = window.getComputedStyle(element);
+        const originalBackground = computedStyle.background;
+        
+        // Limpar o conteúdo original
+        element.innerHTML = '';
+        
+        // Dividir o texto em letras e envolver cada uma em um span
+        Array.from(originalText).forEach(char => {
+            const charSpan = document.createElement('span');
+            
+            // Preservar espaços e quebras de linha
+            if (char === ' ') {
+                charSpan.innerHTML = '&nbsp;';
+            } else if (char === '\n') {
+                charSpan.innerHTML = '<br>';
+            } else {
+                charSpan.textContent = char;
+            }
+            
+            charSpan.classList.add('repulsion-char');
+            
+            // Aplicar estilos essenciais
+            charSpan.style.display = 'inline-block';
+            charSpan.style.position = 'relative';
+            charSpan.style.transition = 'transform 0.2s ease-out';
+            charSpan.style.color = 'transparent';
+            charSpan.style.background = originalBackground;
+            charSpan.style.webkitBackgroundClip = 'text';
+            charSpan.style.backgroundClip = 'text';
+            
+            element.appendChild(charSpan);
+        });
+        
+        // Marcar como processado para evitar processamento duplo
+        element.classList.add('repulsion-processed');
+        
+        // Adicionar eventos de mouse para o elemento
+        element.addEventListener('mousemove', e => {
+            const chars = element.querySelectorAll('.repulsion-char');
+            const rect = element.getBoundingClientRect();
+            
+            // Posição relativa do mouse dentro do elemento
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            
+            chars.forEach(char => {
+                const charRect = char.getBoundingClientRect();
+                
+                // Centro do caractere relativo ao elemento pai
+                const charX = charRect.left - rect.left + charRect.width / 2;
+                const charY = charRect.top - rect.top + charRect.height / 2;
+                
+                // Calcular a distância entre o cursor e o caractere
+                const distX = mouseX - charX;
+                const distY = mouseY - charY;
+                const distance = Math.sqrt(distX * distX + distY * distY);
+                
+                // Raio de influência do cursor (em pixels)
+                const radius = 60;
+                
+                if (distance < radius) {
+                    // Calcular força de repulsão (mais forte quanto mais perto)
+                    const force = (1 - distance / radius) * 10;
+                    
+                    // Normalizar o vetor de direção
+                    const dirX = -distX / distance;
+                    const dirY = -distY / distance;
+                    
+                    // Aplicar a transformação
+                    char.style.transform = `translate(${dirX * force}px, ${dirY * force}px)`;
+                } else {
+                    // Se estiver fora do raio de ação, retornar à posição original
+                    char.style.transform = 'translate(0, 0)';
+                }
+            });
+        });
+        
+        // Retornar todas as letras à posição original quando o mouse sai
+        element.addEventListener('mouseleave', () => {
+            const chars = element.querySelectorAll('.repulsion-char');
+            chars.forEach(char => {
+                char.style.transform = 'translate(0, 0)';
+            });
+        });
+    });
+}
+
 // Exportar funções para uso em outros arquivos
 window.TextAnimations = {
     initGlitchEffect,
     initLiquidTextEffect,
-    initTypewriterEffect
+    initTypewriterEffect,
+    initLetterRepulsionEffect
 };

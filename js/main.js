@@ -60,4 +60,39 @@ document.addEventListener('DOMContentLoaded', function() {
             backToTopButton.classList.remove('active');
         }
     });
+    
+    // Ativar menu mobile
+    const mainMenu = document.querySelector('.main-menu');
+    
+    if (menuToggle && mainMenu) {
+        menuToggle.addEventListener('click', () => {
+            mainMenu.classList.toggle('active');
+            
+            // Animação das barras para formar um X
+            const bars = menuToggle.querySelectorAll('span');
+            if (mainMenu.classList.contains('active')) {
+                bars[0].style.transform = 'translateY(8px) rotate(45deg)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+            } else {
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            }
+        });
+    }
+    
+    // Fechar menu ao clicar em um link
+    const mainMenuLinks = document.querySelectorAll('.main-menu a');
+    mainMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mainMenu.classList.remove('active');
+            
+            // Resetar o ícone do hambúrguer
+            const bars = menuToggle.querySelectorAll('span');
+            bars[0].style.transform = 'none';
+            bars[1].style.opacity = '1';
+            bars[2].style.transform = 'none';
+        });
+    });
 });

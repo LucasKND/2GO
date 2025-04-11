@@ -257,26 +257,28 @@
 }
 
 /* Animated gradient for "Destino" in the title - matching the metrics red color */
+@property --k {
+    syntax: '<number>';
+    initial-value: 0;
+    inherits: false;
+}
+
 .gradient-text {
-    background: linear-gradient(
-        to right,
-        #ff3333,
-        #cc0000,
-        #ff3333,
-        #800000,
-        #ff3333
-    );
-    background-size: 200% auto;
+    --k: 0;
+    background: linear-gradient(90deg, 
+        #ff0100 calc(var(--k) * 100%),
+        #eb0100 calc(var(--k) * 100% + 50%),
+        #ff0100 calc(var(--k) * 100% + 100%));
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 8s linear infinite;
+    filter: url(#glow-filter);
+    animation: gradient-shift 3s linear infinite;
 }
 
-@keyframes shine {
+@keyframes gradient-shift {
     to {
-        background-position: 200% center;
+        --k: 1;
     }
 }
 

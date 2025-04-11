@@ -699,3 +699,22 @@
     height: 80vh; /* Reduced from 100vh if you're using this */
     /* ...existing code... */
 }
+
+/* Add these styles at the end of the file to ensure they override any previous styles */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Fix any potential issues with the SVG filter */
+svg[width='0'][height='0'] {
+    position: absolute;
+    visibility: hidden;
+    z-index: -1;
+}
