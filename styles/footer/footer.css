@@ -4,84 +4,316 @@ footer {
     background-color: var(--bg-darker);
     padding: var(--spacing-lg) 0 var(--spacing-sm);
     position: relative;
+    color: var(--text-light);
+    overflow: hidden;
+}
+
+/* Elemento decorativo inovador */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--primary-color) 0%, 
+        var(--accent-color) 25%, 
+        var(--primary-color) 50%, 
+        var(--accent-color) 75%, 
+        var(--primary-color) 100%);
+    animation: gradient-shift 8s linear infinite;
+    box-shadow: 0 0 15px rgba(255, 58, 58, 0.6);
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr;
-    gap: var(--spacing-lg);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3rem; /* Aumentei o espaçamento entre colunas */
     margin-bottom: var(--spacing-lg);
+    position: relative;
+}
+
+/* Linhas decorativas entre as colunas */
+.footer-content .footer-column:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 80%;
+    background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 58, 58, 0.2) 50%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    top: 10%;
+    right: -1.5rem; /* Posiciona a linha no meio do gap */
+    opacity: 0.6;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; /* Aumentei o espaçamento entre elementos internos */
+    position: relative;
+}
+
+.footer-column h3 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Sublinhado decorativo nos títulos */
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.footer-column:hover h3::after {
+    width: 100%;
 }
 
 .footer-logo img {
     max-width: 150px;
-    margin-bottom: var(--spacing-md);
-    height: 80px;
-    transition: transform 0.3s ease;
+    margin-bottom: 10px;
+    height: 60px; /* Altura reduzida de 80px para 60px */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(255, 58, 58, 0.3));
 }
 
 .footer-logo img:hover {
     transform: scale(1.05);
-    filter: brightness(1.2);
+    filter: brightness(1.2) drop-shadow(0 0 8px rgba(255, 58, 58, 0.5));
+}
+
+.footer-address p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.footer-address p:hover {
+    transform: translateX(5px);
+}
+
+.footer-address i {
+    margin-right: 10px;
+    color: var(--primary-color);
 }
 
 .footer-map {
     border-radius: var(--border-radius-md);
     overflow: hidden;
+    margin-top: 15px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.footer-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-md);
+.footer-map:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-.footer-nav h3,
-.footer-legal h3 {
-    font-size: 1.2rem;
-    margin-bottom: var(--spacing-sm);
+.footer-contact-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-contact-list li {
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.footer-contact-list a {
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+    padding: 8px 0; /* Adicionado padding igual ao dos ícones sociais */
+}
+
+.footer-contact-list a:hover {
     color: var(--primary-color);
 }
 
-.footer-nav ul,
-.footer-legal ul {
+.footer-contact-list i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.footer-contact-list a:hover i {
+    transform: scale(1.2);
+}
+
+.footer-social-icons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
-.footer-nav a,
-.footer-legal a {
-    color: var(--text-muted);
-    transition: var(--transition-normal);
+.social-icon-footer {
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+    position: relative;
+    z-index: 1;
 }
 
-.footer-nav a:hover,
-.footer-legal a:hover {
+/* Efeito de hover inovador para ícones sociais */
+.social-icon-footer::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255, 58, 58, 0.1);
+    z-index: -1;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.social-icon-footer:hover {
     color: var(--primary-color);
     transform: translateX(5px);
 }
 
+.social-icon-footer:hover::before {
+    width: calc(100% + 20px);
+}
+
+.social-icon-footer i {
+    margin-right: 10px;
+    font-size: 18px;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.social-icon-footer:hover i {
+    transform: rotate(15deg) scale(1.2);
+}
+
+.footer-nav ul,
+.footer-legal ul,
+.footer-services-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav ul li,
+.footer-legal ul li,
+.footer-services-list li {
+    margin-bottom: 12px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.footer-nav a,
+.footer-legal a,
+.footer-services-list a {
+    color: var(--text-light);
+    transition: var(--transition-normal);
+    display: block;
+    position: relative;
+    padding-left: 0;
+}
+
+/* Efeito de hover com seta */
+.footer-nav a::before,
+.footer-legal a::before,
+.footer-services-list a::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: var(--primary-color);
+}
+
+.footer-nav a:hover,
+.footer-legal a:hover,
+.footer-services-list a:hover {
+    color: var(--primary-color);
+    transform: translateX(10px);
+}
+
+.footer-nav a:hover::before,
+.footer-legal a:hover::before,
+.footer-services-list a:hover::before {
+    opacity: 1;
+    left: -15px;
+}
+
 .footer-bottom {
-    border-top: 1px solid var(--accent-light);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: var(--spacing-sm);
     text-align: center;
+    position: relative;
 }
 
 .footer-bottom p {
     color: var(--text-muted);
     font-size: 0.9rem;
+    position: relative;
+    display: inline-block;
+}
+
+/* Efeito de pulso no ano atual */
+#currentYear {
+    color: var(--primary-color);
+    font-weight: bold;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 /* Responsividade */
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
     .footer-content {
         grid-template-columns: 1fr 1fr;
+        row-gap: 40px;
     }
     
-    .footer-logo {
-        grid-column: 1 / -1;
-        text-align: center;
+    .footer-content .footer-column:not(:last-child)::after {
+        display: none;
     }
 }
 
@@ -90,7 +322,32 @@ footer {
         grid-template-columns: 1fr;
     }
     
-    .footer-links {
-        margin-top: var(--spacing-md);
+    .footer-column {
+        text-align: center;
+    }
+    
+    .footer-column h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .footer-logo {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .footer-contact-list a,
+    .social-icon-footer {
+        justify-content: center;
+    }
+    
+    .footer-address p {
+        justify-content: center;
+    }
+    
+    .footer-nav a::before,
+    .footer-legal a::before,
+    .footer-services-list a::before {
+        display: none;
     }
 }

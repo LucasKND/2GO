@@ -1,34 +1,34 @@
 /* Arquivo CSS principal que importa todos os outros arquivos CSS */
 
 /* Importação das variáveis e estilos base */
-@import 'common/variables.css';
-@import 'common/main.css';
+@import './common/variables.css';
+@import './common/main.css';
 
 /* Seções específicas do site */
-@import 'hero/hero.css';
-@import 'header/header.css';
-@import 'metrics/metrics.css'; /* Movido para pasta metrics */
-@import 'services/services.css'; /* Movido para pasta services */
-@import 'expertise/expertise.css';
-@import 'cases/cases.css';
-@import 'team/team.css';
-@import 'testimonials/testimonials.css';
-@import 'cta/cta.css';
-@import 'contact/contact.css'; /* Movido para pasta contact */
-@import 'footer/footer.css';
+@import './hero/hero.css';
+@import './header/header.css';
+@import './metrics/metrics.css'; /* Movido para pasta metrics */
+@import './services/services.css'; /* Movido para pasta services */
+@import './expertise/expertise.css';
+@import './cases/cases.css';
+@import './team/team.css';
+@import './testimonials/testimonials.css';
+@import './cta/cta.css';
+@import './contact/contact.css'; /* Movido para pasta contact */
+@import './footer/footer.css';
 
 /* Efeitos e animações */
-@import 'effects/animations.css'; /* Movido para pasta effects */
-@import 'effects/parallax.css';
-@import 'effects/reveal.css'; /* Movido para pasta effects */
-@import 'effects/cursor.css'; /* Movido para pasta effects */
-@import 'effects/text-effects.css'; /* Adicionando importação de text-effects */
+@import './effects/animations.css'; /* Movido para pasta effects */
+@import './effects/parallax.css';
+@import './effects/reveal.css'; /* Movido para pasta effects */
+@import './effects/cursor.css'; /* Movido para pasta effects */
+@import './effects/text-effects.css'; /* Adicionando importação de text-effects */
 
 /* Responsividade */
-@import 'common/responsive.css';
+@import './common/responsive.css';
 
 /* Modos de visualização */
-@import 'dark-mode.css';
+@import './dark-mode.css';
 
 /* Animations */
 @keyframes pulse {

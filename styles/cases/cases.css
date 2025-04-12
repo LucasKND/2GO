@@ -100,6 +100,17 @@
     transition: all 0.3s ease;
 }
 
+/* Ajustes específicos para alguns logos */
+.client-logo img[src*="logoG2.png"] {
+    max-width: 110px; /* Tamanho reduzido para o logo G2 */
+    max-height: 65px;
+}
+
+.client-logo img[src*="Bella-Foto.png"] {
+    max-width: 180px; /* Tamanho aumentado ainda mais para o logo Bella-Foto */
+    max-height: 100px;
+}
+
 .client-logo:hover img {
     filter: grayscale(0) opacity(1);
     transform: scale(1.1);
