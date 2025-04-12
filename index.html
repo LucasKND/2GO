@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lucas Veroneze">
     <title>2GO Marketing</title>
+    <link rel="stylesheet" href="vendor/fonts/fonts.css">
     <link rel="stylesheet" href="styles/index.css">
-    <link rel="stylesheet" href="styles/text-effects.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-    <!-- Estilos inline removidos para evitar conflitos com o efeito de gradiente -->
+    <link rel="icon" href="assets/Logotipo.png" type="image/x-icon">
 </head>
 <body>
     <svg width='0' height='0'>
@@ -38,23 +37,27 @@
             <div class="logo nav-hidden-on-landing">
                 <img src="assets/Logotipo-branco.png" alt="2GO Marketing Logo">
             </div>
-            <nav class="nav-hidden-on-landing">
+            <nav>
                 <div class="social-icons">
-                    <a href="https://www.instagram.com/2gomkt/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/2gomkt/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=5524992028552&text=Gostaria%20de%20saber%20mais%20sobre%20a%202GO%20Marketing!" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.linkedin.com/company/2gomarketing/?originalSubdomain=br" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/2gomkt/" class="social-icon" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=5524992028552&text=Gostaria%20de%20saber%20mais%20sobre%20a%202GO%20Marketing!" class="social-icon" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/2gomkt/" class="social-icon" title="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/company/2gomarketing/?originalSubdomain=br" class="social-icon" title="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <div class="menu-toggle">
+                <div class="menu-toggle nav-hidden-on-landing">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
                 <ul class="main-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Serviços</a></li>
-                    <li><a href="#team">Time</a></li>
-                    <li><a href="#contact" class="nav-cta">Contato</a></li>
+                    <button class="menu-close" aria-label="Fechar menu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <li><a href="#home"><i class="fas fa-bullseye"></i> Propósito</a></li>
+                    <li><a href="#services"><i class="fas fa-cogs"></i> O que fazemos</a></li>
+                    <li><a href="#team"><i class="fas fa-users"></i> Time</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-comment-dots"></i> Depoimentos</a></li>
+                    <li><a href="#cases"><i class="fas fa-briefcase"></i> Nossos clientes</a></li>
                 </ul>
             </nav>
         </div>
@@ -73,8 +76,10 @@
         </div>
         
         <div class="hero-scroll-indicator hero-scroll-indicator-hidden-on-landing">
-            <div class="scroll-arrow"></div>
-            <div class="scroll-text">Explore</div>
+            <div class="mouse-icon">
+                <div class="wheel"></div>
+            </div>
+            <div class="scroll-text">EXPLORE</div>
         </div>
         
         <div class="hero-transition-effect"></div>
@@ -97,18 +102,19 @@
                 <div class="metric-card" data-depth="0.2">
                     <span class="counter" data-target="27000">0</span>
                     <span class="metric-suffix">+</span>
-                    <h3 class="metric-title">Projetos</h3>
+                    <h3 style="text-align: center" class="metric-title">Projetos</h3>
                 </div>
                 
                 <div class="metric-card" data-depth="0.4">
                     <span class="counter" data-target="100">0</span>
                     <span class="metric-suffix">+</span>
-                    <h3 class="metric-title">Projetos entregues</h3>
+                    <h3 style="text-align: center" class="metric-title">Clientes</h3>
                 </div>
                 
                 <div class="metric-card" data-depth="0.3">
                     <span class="counter" data-target="13">0</span>
-                    <h3 class="metric-title">Anos de experiência</h3>
+                    <span class="metric-suffix">+</span>
+                    <h3 style="text-align: center" class="metric-title">Anos de experiência</h3>
                 </div>
             </div>
         </div>
@@ -554,12 +560,7 @@
                         <i class="fas fa-envelope"></i>
                         <p>contato@agenciadigital.com</p>
                     </div>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
+                    <!-- Ícones de redes sociais removidos -->
                 </div>
             </div>
         </div>
@@ -596,7 +597,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> AgênciaDigital. Todos os direitos reservados.</p>
+                <p>&copy; <span id="currentYear"></span> 2GO Marketing. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -604,24 +605,23 @@
     <a href="#home" class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </a>
-
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="js/counter.js"></script>
-    <script src="js/reveal.js"></script>
-    <script src="js/parallax.js"></script>
-    <script src="js/testimonials.js"></script>
-    <script src="js/form-validation.js"></script>
-    <script src="js/hero-experience.js"></script>
-    <script src="js/advanced-cursor.js"></script>
-    <script src="js/purpose-narrative.js"></script>
-    <script src="js/text-animations.js"></script>
+    <script src="JS/common/main.js"></script>
+    <script src="JS/particles.js"></script>
+    <script src="JS/metrics/counter.js"></script>
+    <script src="JS/reveal.js"></script>
+    <script src="JS/parallax.js"></script>
+    <script src="JS/testimonials.js"></script>
+    <script src="JS/form-validation.js"></script>
+    <script src="JS/hero/hero-experience.js"></script>
+    <script src="JS/advanced-cursor.js"></script>
+    <script src="JS/purpose-narrative.js"></script>
+    <script src="JS/text-animations.js"></script>
 </body>
 </html>

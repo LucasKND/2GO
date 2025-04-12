@@ -79,3 +79,49 @@ body {
 a, button, .interactive, .expertise-item, .service-card {
     cursor: pointer; /* Usar cursor pointer para elementos interativos */
 }
+
+/* Estilos para as partículas do cursor */
+.click-particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.cursor-particle {
+    position: absolute;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform, opacity;
+    filter: blur(0.5px);
+    box-shadow: 0 0 5px rgba(255, 58, 58, 0.7);
+}
+
+/* Evitar que elementos de fundo e partículas tenham cursor pointer */
+.particles-js-canvas-el,
+#metrics-canvas,
+#particles-js,
+canvas[data-engine="three.js"],
+.webgl-background,
+.metrics-background,
+.parallax-layer,
+.ai-dots,
+.subtle-grid-overlay,
+.subtle-grid-lines {
+    cursor: default !important;
+    pointer-events: none !important;
+}
+
+/* Restaurar cursor pointer apenas para elementos realmente interativos */
+a, button, .interactive, .service-card, .team-member, 
+.submit-button, .cta-button, .expertise-item, .client-logo {
+    cursor: pointer;
+}
+
+/* Resto do CSS do cursor permanece igual */

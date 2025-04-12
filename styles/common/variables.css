@@ -50,7 +50,38 @@
     /* Add background color variables for sections */
     --services-bg-color: inherit; /* Base background color for services */
     --cases-bg-color: inherit; /* Base background color for cases/clients */
+
+    /* Cores da barra de rolagem */
+    --scrollbar-track-color: rgba(18, 18, 18, 0.2);
+    --scrollbar-thumb-color: var(--primary-color);
+    --scrollbar-thumb-hover-color: #ff5252;
 }
 
 /* Importação de fontes */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+@import url('/vendor/fonts/fonts.css');
+
+/* Personalizando a barra de rolagem */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-color);
+}
+
+/* Para Firefox */
+html {
+    scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+    scrollbar-width: thin;
+}

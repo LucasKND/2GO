@@ -19,7 +19,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-fill-color: transparent;
+    -text-fill-color: transparent;
     animation: gradientFlow 4s linear infinite;
     
     /* Aplicar o filtro de brilho */
@@ -50,7 +50,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-fill-color: transparent;
+    -text-fill-color: transparent;
 }
 
 /* Garantir que espaços também sejam afetados */
@@ -58,8 +58,6 @@
     content: '\00a0';
     display: inline-block;
 }
-
-/* Removido o efeito de cor ao passar o mouse */
 
 /* Estilo para dispositivos móveis onde o hover não é aplicável */
 @media (max-width: 768px) {

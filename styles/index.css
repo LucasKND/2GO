@@ -1,402 +1,34 @@
 /* Arquivo CSS principal que importa todos os outros arquivos CSS */
 
 /* Importação das variáveis e estilos base */
-@import 'variables.css';
-@import 'main.css';
+@import 'common/variables.css';
+@import 'common/main.css';
 
 /* Seções específicas do site */
-@import 'hero.css';
-@import 'header.css';
-@import 'metrics-experience.css'; /* Nova experiência para a seção de métricas */
-@import 'services.css';
-@import 'expertise.css';
-@import 'cases.css';
-@import 'team.css';
-@import 'testimonials.css';
-@import 'cta.css';
-@import 'contact.css';
-@import 'footer.css';
+@import 'hero/hero.css';
+@import 'header/header.css';
+@import 'metrics/metrics.css'; /* Movido para pasta metrics */
+@import 'services/services.css'; /* Movido para pasta services */
+@import 'expertise/expertise.css';
+@import 'cases/cases.css';
+@import 'team/team.css';
+@import 'testimonials/testimonials.css';
+@import 'cta/cta.css';
+@import 'contact/contact.css'; /* Movido para pasta contact */
+@import 'footer/footer.css';
 
 /* Efeitos e animações */
-@import 'animations.css';
-@import 'parallax.css';
-@import 'reveal.css';
-@import 'cursor.css';
+@import 'effects/animations.css'; /* Movido para pasta effects */
+@import 'effects/parallax.css';
+@import 'effects/reveal.css'; /* Movido para pasta effects */
+@import 'effects/cursor.css'; /* Movido para pasta effects */
+@import 'effects/text-effects.css'; /* Adicionando importação de text-effects */
 
 /* Responsividade */
-@import 'responsive.css';
+@import 'common/responsive.css';
 
 /* Modos de visualização */
 @import 'dark-mode.css';
-
-/* Tech Metrics Section Styling - Red & Black Theme */
-.tech-metrics {
-    position: relative;
-    background: linear-gradient(135deg, #0c0c0c 0%, #1a0000 100%);
-    overflow: hidden;
-}
-
-.tech-grid-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0.15;
-    pointer-events: none;
-}
-
-.grid-lines {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.grid-lines.horizontal {
-    background-image: repeating-linear-gradient(to bottom, rgba(255, 0, 0, 0.3) 0px, rgba(255, 0, 0, 0.3) 1px, transparent 1px, transparent 50px);
-}
-
-.grid-lines.vertical {
-    background-image: repeating-linear-gradient(to right, rgba(255, 0, 0, 0.3) 0px, rgba(255, 0, 0, 0.3) 1px, transparent 1px, transparent 50px);
-}
-
-.metrics-container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.tech-card {
-    background: rgba(15, 0, 0, 0.7);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 0, 0, 0.1);
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.tech-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, transparent 48%, rgba(255, 0, 0, 0.1) 50%, transparent 52%);
-    background-size: 200% 200%;
-    animation: shine 5s infinite linear;
-    z-index: -1;
-}
-
-.tech-card-corners .corner {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    border-color: rgba(255, 0, 0, 0.6);
-    transition: all 0.3s ease;
-}
-
-.corner.top-left {
-    top: 0;
-    left: 0;
-    border-top: 2px solid;
-    border-left: 2px solid;
-}
-
-.corner.top-right {
-    top: 0;
-    right: 0;
-    border-top: 2px solid;
-    border-right: 2px solid;
-}
-
-.corner.bottom-left {
-    bottom: 0;
-    left: 0;
-    border-bottom: 2px solid;
-    border-left: 2px solid;
-}
-
-.corner.bottom-right {
-    bottom: 0;
-    right: 0;
-    border-bottom: 2px solid;
-    border-right: 2px solid;
-}
-
-.tech-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(255, 0, 0, 0.2);
-}
-
-.tech-card:hover .corner {
-    width: 25px;
-    height: 25px;
-}
-
-.metric-icon-container {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-}
-
-.metric-icon {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #a50000 0%, #ff0000 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
-}
-
-.metric-icon i {
-    color: #fff;
-    font-size: 32px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-}
-
-.tech-glow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, transparent 70%);
-    filter: blur(10px);
-    opacity: 0.5;
-    animation: pulse 3s infinite alternate;
-    z-index: 1;
-}
-
-.metric h3 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 15px 0;
-    background: linear-gradient(to right, #ff3333, #ff0000);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-}
-
-.counter-suffix {
-    font-size: 2rem;
-    opacity: 0.8;
-}
-
-.metric-line {
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(to right, #a50000, #ff0000);
-    margin: 15px auto;
-    position: relative;
-}
-
-.metric-line::before {
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ff0000;
-    top: 50%;
-    right: -5px;
-    transform: translateY(-50%);
-    box-shadow: 0 0 10px #ff0000;
-}
-
-.metric p {
-    text-align: center;
-    color: #f0f0f0;
-    font-size: 1.1rem;
-    letter-spacing: 0.5px;
-}
-
-.metric-hover-info {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(20, 0, 0, 0.95);
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    border-radius: 10px;
-    padding: 20px;
-    z-index: 10;
-}
-
-.tech-card:hover .metric-hover-info {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.metric-graph {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: 80%;
-    height: 150px;
-    margin-bottom: 20px;
-}
-
-.graph-bar {
-    width: 15%;
-    background: linear-gradient(to top, #a50000, #ff3333);
-    border-radius: 4px 4px 0 0;
-    position: relative;
-    transition: height 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
-}
-
-.graph-bar .bar-value {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #ff3333;
-    font-size: 12px;
-    white-space: nowrap;
-}
-
-.metric-graph.circular {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 90%;
-}
-
-.graph-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 0, 0, 0.2);
-    border: 2px solid #a50000;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease;
-    transform: scale(calc(var(--percent) / 25%));
-    box-shadow: 0 0 15px rgba(255, 0, 0, calc(var(--percent) / 100%));
-}
-
-.graph-circle span {
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.tech-timeline {
-    position: relative;
-    width: 90%;
-    height: 80px;
-    margin: 20px 0;
-}
-
-.timeline-line {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: rgba(255, 0, 0, 0.3);
-    transform: translateY(-50%);
-}
-
-.timeline-progress {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(to right, #a50000, #ff0000);
-    transform: translateY(-50%);
-    z-index: 1;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-}
-
-.timeline-point {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: #0c0c0c;
-    border: 2px solid #a50000;
-    z-index: 2;
-}
-
-.timeline-point span {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #f0f0f0;
-    font-size: 12px;
-    white-space: nowrap;
-}
-
-.timeline-point.active {
-    background: #ff0000;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
-}
-
-.metric-info-text {
-    color: #f0f0f0;
-    text-align: center;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    padding: 0 15px;
-}
-
-.metrics-particle-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.data-trail {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.trail-path {
-    fill: none;
-    stroke: #ff0000;
-    stroke-width: 2;
-    stroke-dasharray: 10, 10;
-    stroke-linecap: round;
-    opacity: 0.6;
-    filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.7));
-    animation: dash 20s linear infinite;
-}
 
 /* Animations */
 @keyframes pulse {
@@ -472,16 +104,6 @@
     z-index: 3;
     max-width: 1200px;
     margin: 0 auto;
-    margin-bottom: 0; /* Ensure no extra space at bottom */
-}
-
-.metric-card {
-    position: relative;
-    padding: 20px; /* Reduced from 30px to 20px */
-    text-align: center;
-    margin: 10px; /* Reduced from 20px to 10px */
-    min-width: 200px;
-    transition: transform 0.3s ease;
 }
 
 .metric-card:hover {
@@ -489,9 +111,9 @@
 }
 
 .counter {
-    font-size: 4.5rem; /* Slightly smaller font */
+    font-size: 4.5rem;
     font-weight: 300;
-    margin-bottom: 5px; /* Reduced from 10px to 5px */
+    margin-bottom: 5px;
     position: relative;
     display: inline-block;
     background: linear-gradient(90deg, #ff3333, #cc0000, #ff3333, #800000);
@@ -504,7 +126,7 @@
 }
 
 .metric-suffix {
-    font-size: 2.2rem; /* Slightly smaller */
+    font-size: 2.2rem;
     font-weight: 200;
     background: linear-gradient(90deg, #ff3333, #cc0000);
     -webkit-background-clip: text;
@@ -514,10 +136,9 @@
 }
 
 .metric-title {
-    font-size: 1.1rem; /* Slightly smaller */
+    font-size: 1.1rem;
     font-weight: 400;
     letter-spacing: 1px;
-    margin-top: 2px; /* Reduced from 5px to 2px */
     background: linear-gradient(90deg, #333, #555, #333);
     background-size: 200% 100%;
     -webkit-background-clip: text;
@@ -525,6 +146,9 @@
     -webkit-text-fill-color: transparent;
     animation: shine-gradient 6s ease-in-out infinite;
     animation-delay: 1s;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* Shine gradient animation */
@@ -544,6 +168,10 @@
 .metric-card:hover .counter {
     animation: shine-gradient 3s ease-in-out infinite;
     text-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.metric-title{
+    transform: translateY(-30px);
 }
 
 .metric-card:hover .metric-title {
@@ -625,7 +253,7 @@
     position: relative;
     overflow: hidden;
     /* Removing explicit background-color to match services */
-    padding: 60px 0; /* Reduced from 100px to 60px */
+    padding: 60px 0 20px; /* Reduced from 100px to 60px */
 }
 
 /* Add match-services-bg class to ensure metrics has same background as services */
@@ -672,21 +300,9 @@
     margin-bottom: 10px;
     position: relative;
     display: inline-block;
-}
-
-.metric-suffix {
-    font-size: 2.5rem;
-    font-weight: 200;
-    color: rgba(200, 0, 0, 0.8);
-    margin-left: 5px;
-}
-
-.metric-title {
-    font-size: 1.2rem;
-    color: #555; /* Adjusted for better visibility on services background */
-    font-weight: 300;
-    letter-spacing: 1px;
-    margin-top: 10px;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* For the sticky overlap version - update these if you're using them */
@@ -705,11 +321,6 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-}
-
-header {
-    margin-top: 0;
-    padding-top: 0;
 }
 
 /* Fix any potential issues with the SVG filter */

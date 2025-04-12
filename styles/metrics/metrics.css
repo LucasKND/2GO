@@ -1,0 +1,80 @@
+#metrics {
+    position: relative;
+    overflow: hidden;
+    /* Removing explicit background-color to match services */
+    padding: 60px 0; /* Reduced from 100px to 60px */
+}
+
+/* Add match-services-bg class to ensure metrics has same background as services */
+.match-services-bg {
+    background-color: inherit; /* Inherits from body or parent element */
+}
+
+/* Adjust the grid lines to be visible against services background */
+.match-services-bg .subtle-grid-lines.horizontal {
+    background-image: repeating-linear-gradient(to bottom, rgba(180, 0, 0, 0.15) 0px, rgba(180, 0, 0, 0.15) 1px, transparent 1px, transparent 50px); /* Increased from 0.05 */
+}
+
+.match-services-bg .subtle-grid-lines.vertical {
+    background-image: repeating-linear-gradient(to right, rgba(180, 0, 0, 0.15) 0px, rgba(180, 0, 0, 0.15) 1px, transparent 1px, transparent 50px); /* Increased from 0.05 */
+}
+
+/* Adjust AI dots for better visibility on services background */
+.dot {
+    position: absolute;
+    width: 3px; /* Increased from 2px */
+    height: 3px; /* Increased from 2px */
+    background-color: rgba(180, 0, 0, 0.4); /* Increased opacity from 0.2 to 0.4 */
+    border-radius: 50%;
+}
+
+.dot::after {
+    content: '';
+    position: absolute;
+    width: 8px; /* Increased from 4px */
+    height: 8px; /* Increased from 4px */
+    background-color: transparent;
+    border: 1px solid rgba(180, 0, 0, 0.25); /* Increased opacity from 0.1 to 0.25 */
+    border-radius: 50%;
+    top: -3px; /* Adjusted for larger size */
+    left: -3px; /* Adjusted for larger size */
+    animation: pulse-dot 3s infinite;
+}
+
+/* Adjust counter colors for visibility on services background */
+.counter {
+    font-size: 5rem;
+    font-weight: 200;
+    color: #333; /* Dark gray for contrast on light background */
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* For the sticky overlap version - update these if you're using them */
+.overlap-container {
+    /* ...existing code... */
+    min-height: 120vh; /* Reduced if you're using the overlap container */
+}
+
+#metrics.overlap-section {
+    height: 80vh; /* Reduced from 100vh if you're using this */
+    /* ...existing code... */
+}
+
+/* Add these styles at the end of the file to ensure they override any previous styles */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Fix any potential issues with the SVG filter */
+svg[width='0'][height='0'] {
+    position: absolute;
+    visibility: hidden;
+    z-index: -1;
+}

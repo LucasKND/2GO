@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Inicializar efeito de magnetismo dos botões
     initButtonMagnetism();
+    
+    // Inicializar o controle do menu toggle
+    initMenuToggle();
 });
 
 // Inicializar o canvas Three.js
@@ -345,6 +348,8 @@ function startIntroAnimation() {
     // Selecionar elementos específicos para animações coordenadas
     const logoElement = document.querySelector('.logo');
     const navLinks = document.querySelectorAll('nav ul li');
+    const socialIcons = document.querySelector('.social-icons');
+    const menuToggle = document.querySelector('.menu-toggle');
     const heroTitle = heroContent ? heroContent.querySelector('.hero-title') : null;
     const heroDescription = heroContent ? heroContent.querySelector('.hero-description') : null;
     const buttons = heroContent ? heroContent.querySelectorAll('.cta-button') : [];
@@ -370,10 +375,26 @@ function startIntroAnimation() {
         scrollIndicator.style.pointerEvents = 'none';
     }
     
+    // Garantir que os ícones sociais e o botão toggle estejam inicialmente escondidos
+    // Este passo é crucial, pois esses elementos podem não ser capturados pelo seletor inicial
+    if (socialIcons) {
+        socialIcons.style.opacity = '0';
+        socialIcons.style.visibility = 'hidden';
+        socialIcons.style.pointerEvents = 'none';
+    }
+    
+    if (menuToggle) {
+        menuToggle.style.opacity = '0';
+        menuToggle.style.visibility = 'hidden';
+        menuToggle.style.pointerEvents = 'none';
+    }
+    
     // Remover qualquer classe de animação existente
     const allAnimElements = [
         logoElement, 
-        ...navLinks, 
+        ...navLinks,
+        socialIcons,
+        menuToggle, 
         heroTitle, 
         heroDescription, 
         ...buttons, 
@@ -389,12 +410,6 @@ function startIntroAnimation() {
             'delay-300', 'delay-350', 'delay-400', 'delay-450', 'delay-500',
             'delay-600', 'delay-700', 'delay-800'
         );
-        
-        // Certifique-se de que todos os elementos estão escondidos inicialmente
-        if (el) {
-            el.style.opacity = '0';
-            el.style.visibility = 'hidden';
-        }
     });
     
     // Animação usando GSAP
@@ -424,6 +439,10 @@ function startIntroAnimation() {
                     if (scrollIndicator) scrollIndicator.style.pointerEvents = 'auto';
                     navElements.forEach(el => el.style.pointerEvents = 'auto');
                     
+                    // Garantir que todos os elementos necessários possam receber eventos
+                    if (socialIcons) socialIcons.style.pointerEvents = 'auto';
+                    if (menuToggle) menuToggle.style.pointerEvents = 'auto';
+                    
                     // Aplicar animações logo - com atraso menor para sincronizar
                     if (logoElement) {
                         setTimeout(() => {
@@ -433,13 +452,31 @@ function startIntroAnimation() {
                         }, 50);
                     }
                     
+                    // Animação para o botão de menu toggle - aparecendo logo no início
+                    if (menuToggle) {
+                        setTimeout(() => {
+                            menuToggle.style.visibility = 'visible';
+                            menuToggle.style.opacity = '1';
+                            menuToggle.classList.add('nav-appear');
+                        }, 100);
+                    }
+                    
+                    // Animação para os ícones sociais - logo após o botão de menu
+                    if (socialIcons) {
+                        setTimeout(() => {
+                            socialIcons.style.visibility = 'visible';
+                            socialIcons.style.opacity = '1';
+                            socialIcons.classList.add('nav-appear');
+                        }, 150);
+                    }
+                    
                     // Aplicar animações para os links de navegação com atraso sequencial
                     navLinks.forEach((link, index) => {
                         setTimeout(() => {
                             link.style.visibility = 'visible';
                             link.style.opacity = '1';
                             link.classList.add('nav-appear');
-                        }, 100 + (index * 100));
+                        }, 200 + (index * 100));
                     });
                     
                     // Animação para o título
@@ -731,3 +768,143 @@ function initButtonMagnetism() {
         });
     });
 }
+
+// Função para controlar o menu toggle
+function initMenuToggle() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainMenu = document.querySelector('.main-menu');
+    
+    if (menuToggle && mainMenu) {
+        menuToggle.addEventListener('click', () => {
+            mainMenu.classList.toggle('active');
+            
+            // Animar as linhas do botão toggle para formar um X quando o menu está ativo
+            if (mainMenu.classList.contains('active')) {
+                gsap.to(menuToggle.querySelectorAll('span')[0], {
+                    rotate: 45,
+                    y: 8,
+                    duration: 0.3
+                });
+                
+                gsap.to(menuToggle.querySelectorAll('span')[1], {
+                    opacity: 0,
+                    duration: 0.3
+                });
+                
+                gsap.to(menuToggle.querySelectorAll('span')[2], {
+                    rotate: -45,
+                    y: -8,
+                    duration: 0.3
+                });
+            } else {
+                // Restaurar o estado original quando o menu é fechado
+                gsap.to(menuToggle.querySelectorAll('span'), {
+                    rotate: 0,
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.3
+                });
+            }
+        });
+        
+        // Fechar o menu quando clicar em um link
+        const mainMenuLinks = mainMenu.querySelectorAll('a');
+        mainMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mainMenu.classList.remove('active');
+                
+                // Restaurar o estado original do botão toggle
+                gsap.to(menuToggle.querySelectorAll('span'), {
+                    rotate: 0,
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.3
+                });
+            });
+        });
+    }
+}
+
+// Adicionar funcionalidade ao botão "Explore" para rolagem suave
+document.addEventListener('DOMContentLoaded', function() {
+    // Selecionar o indicador de rolagem
+    const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+    
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function() {
+            // Selecionar a próxima seção (Metrics neste caso)
+            const nextSection = document.getElementById('metrics');
+            
+            if (nextSection) {
+                // Animar a rolagem com GSAP para uma transição elegante
+                gsap.to(window, {
+                    duration: 1.5, 
+                    scrollTo: {
+                        y: nextSection,
+                        offsetY: 80
+                    },
+                    ease: "power3.inOut"
+                });
+                
+                // Adicionar um efeito visual ao clicar
+                gsap.to(scrollIndicator, {
+                    duration: 0.2,
+                    scale: 0.9,
+                    yoyo: true,
+                    repeat: 1
+                });
+            }
+        });
+    }
+    
+    // Adicionar animação ao menu principal quando aberto
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainMenu = document.querySelector('.main-menu');
+    
+    if (menuToggle && mainMenu) {
+        menuToggle.addEventListener('click', function() {
+            // Alternar a classe active no menu
+            mainMenu.classList.toggle('active');
+            
+            // Se o menu estiver ativo
+            if (mainMenu.classList.contains('active')) {
+                // Animar a entrada dos itens do menu com GSAP
+                gsap.fromTo(
+                    mainMenu.querySelectorAll('li'),
+                    { x: 50, opacity: 0 },
+                    { 
+                        x: 0, 
+                        opacity: 1, 
+                        stagger: 0.1,
+                        duration: 0.5,
+                        ease: "power2.out"
+                    }
+                );
+                
+                // Animar o ícone do menu
+                gsap.to(menuToggle.querySelectorAll('span'), {
+                    duration: 0.3,
+                    backgroundColor: '#ffffff'
+                });
+            } else {
+                // Animar a saída dos itens do menu
+                gsap.to(
+                    mainMenu.querySelectorAll('li'),
+                    { 
+                        x: 50, 
+                        opacity: 0, 
+                        stagger: 0.05,
+                        duration: 0.3,
+                        ease: "power2.in"
+                    }
+                );
+                
+                // Restaurar o ícone do menu
+                gsap.to(menuToggle.querySelectorAll('span'), {
+                    duration: 0.3,
+                    backgroundColor: '#ffffff'
+                });
+            }
+        });
+    }
+});
