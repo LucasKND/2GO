@@ -69,6 +69,8 @@ nav ul li a:hover {
     z-index: 100; /* Garantindo que apareça acima de outros elementos */
     position: relative; /* Adicionado para garantir posicionamento correto */
     margin-right: 20px; /* Adicionado espaço entre os ícones sociais e o botão de menu */
+    opacity: 1 !important; /* Garantir que os ícones sempre apareçam */
+    visibility: visible !important; /* Garantir que os ícones sempre sejam visíveis */
 }
 
 .social-icons a {
@@ -99,12 +101,13 @@ nav ul li a:hover {
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease; /* Adicionado transição para transform */
-    z-index: 100; /* Garantindo que apareça acima de outros elementos */
+    z-index: 999999 !important; /* Mesmo z-index do menu para consistência */
     position: relative; /* Adicionado para garantir posicionamento correto */
 }
 
 .menu-toggle:hover {
     background-color: var(--primary-dark);
+    z-index: 999999 !important;
     transform: translateY(-3px); /* Adicionado efeito de hover para consistência com outros elementos */
 }
 
@@ -114,6 +117,7 @@ nav ul li a:hover {
     background-color: var(--text-light);
     display: block;
     transition: var(--transition-normal);
+    z-index: 999999 !important;
 }
 
 /* Estilos específicos para garantir visibilidade */
@@ -136,15 +140,17 @@ nav ul li a:hover {
     right: -100%;
     width: 280px;
     height: 100vh;
-    background-color: var(--bg-darker);
+    background-color: #000000; /* Alterado para preto opaco */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-md);
-    transition: right 0.3s ease;
-    z-index: 1000;
+    transition: right 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    z-index: 999999; /* Z-index extremamente alto para sobrepor qualquer elemento */
     overflow: hidden;
+    opacity: 0;
+    transform: translateX(100%);
 }
 
 .main-menu::before {
@@ -156,7 +162,7 @@ nav ul li a:hover {
     height: 100%;
     background: linear-gradient(180deg, transparent, #ff3a3a, transparent);
     animation: neonBorder 4s linear infinite;
-    z-index: 1;
+    z-index: 999;
 }
 
 @keyframes neonBorder {
@@ -173,7 +179,10 @@ nav ul li a:hover {
 
 .main-menu.active {
     right: 0;
-    box-shadow: -5px 0 15px rgba(255, 58, 58, 0.1);
+    box-shadow: -5px 0 15px rgba(255, 58, 58, 0.2);
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 999999 !important;
 }
 
 .main-menu li {
@@ -277,9 +286,11 @@ nav ul li a:hover {
     }
 }
 
-@media (max-width: 768px) {
+/* Menu para tablet */
+@media (max-width: 1024px) {
     .menu-toggle {
         display: flex;
+        z-index: 999999 !important;
     }
     
     nav ul {
@@ -299,7 +310,9 @@ nav ul li a:hover {
     nav ul.active {
         right: 0;
     }
-    
+}
+
+@media (max-width: 768px) {
     .hero .container {
         flex-direction: column;
         text-align: center;
@@ -313,6 +326,63 @@ nav ul li a:hover {
     .hero-content p {
         margin-left: auto;
         margin-right: auto;
+    }
+
+    /* Removendo modificações de largura do menu para dispositivos móveis */
+    .main-menu li {
+        text-align: left;
+        padding-left: 2rem;
+    }
+    
+    .main-menu li a {
+        justify-content: flex-start;
+    }
+
+    .main-menu.active{
+        z-index: 999999 !important;
+    }
+
+    /* Garantir que elementos de texto não fiquem sobre o menu apenas na resolução mobile */
+    .main-menu.active ~ * .hero-content,
+    .main-menu.active ~ * .hero-title,
+    .main-menu.active ~ * .hero-description,
+    .main-menu.active ~ * .repulsion-text,
+    .main-menu.active ~ * .container {
+        z-index: 1 !important;
+    }
+    
+    /* Forçar o menu a ficar acima de qualquer outro elemento quando ativo */
+    .main-menu.active {
+        z-index: 999999 !important;
+        background-color: #000000 !important;
+        opacity: 1 !important;
+    }
+    
+    /* Overlay preto que aparece quando o menu está ativo */
+    body::after {
+        content: '';
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 999990;
+    }
+    
+    body.menu-active::after {
+        display: block;
+    }
+    
+    /* Garantir z-index do botão toggle */
+    .menu-toggle {
+        z-index: 999999 !important;
+    }
+    
+    /* Garantir z-index do botão fechar */
+    .menu-close {
+        z-index: 1000000 !important;
     }
 }
 
@@ -340,7 +410,7 @@ nav ul li a:hover {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    z-index: 10;
+    z-index: 1000000; /* Z-index ainda mais alto para ficar acima do menu */
 }
 
 .menu-close i {

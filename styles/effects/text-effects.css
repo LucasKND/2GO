@@ -5,6 +5,7 @@
     text-decoration: none;
     color: #FF3A3A; /* Fallback para navegadores que não suportam gradiente */
     font-weight: bold;
+    white-space: nowrap; /* Impede a quebra de linha do texto */
     
     /* Efeito de gradiente animado */
     background-image: linear-gradient(

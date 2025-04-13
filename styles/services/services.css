@@ -454,4 +454,23 @@
     .service-content p {
         font-size: 1em;
     }
+    
+    /* Aumentar z-index do conteúdo nos dispositivos móveis */
+    .service-content {
+        z-index: 10;
+        pointer-events: auto;
+    }
+    
+    /* Garantir que os links sejam clicáveis */
+    .service-content a {
+        position: relative;
+        z-index: 15;
+        pointer-events: auto;
+    }
+    
+    /* Ajustes para evitar deslocamento excessivo em hover que pode dificultar o toque */
+    .service-card:hover .service-content {
+        left: -15px;
+        padding: 40px 30px;
+    }
 }

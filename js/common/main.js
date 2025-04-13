@@ -31,14 +31,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Menu mobile toggle
+    // Menu mobile toggle - Modificado para abrir página de menu em tela cheia
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('nav ul');
     
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    });
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            // Verifica se está em resolução mobile ou tablet (até 1024px)
+            if (window.innerWidth <= 1024) {
+                // Redireciona para a página de menu em tela cheia
+                window.location.href = './pages/menu.html';
+            } else {
+                // Comportamento original para desktop
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+                
+                // Animação das barras para formar um X
+                const bars = menuToggle.querySelectorAll('span');
+                if (navMenu.classList.contains('active')) {
+                    bars[0].style.transform = 'translateY(8px) rotate(45deg)';
+                    bars[1].style.opacity = '0';
+                    bars[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+                } else {
+                    bars[0].style.transform = 'none';
+                    bars[1].style.opacity = '1';
+                    bars[2].style.transform = 'none';
+                }
+            }
+        });
+    }
     
     // Fechar menu ao clicar em um link
     const navLinks = document.querySelectorAll('nav ul li a');
@@ -47,6 +68,14 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             menuToggle.classList.remove('active');
+            
+            // Resetar o ícone do hambúrguer
+            if (menuToggle) {
+                const bars = menuToggle.querySelectorAll('span');
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            }
         });
     });
     
@@ -61,52 +90,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Ativar menu mobile
-    const mainMenu = document.querySelector('.main-menu');
-    
-    if (menuToggle && mainMenu) {
-        menuToggle.addEventListener('click', () => {
-            mainMenu.classList.toggle('active');
+    // Botão de fechar o menu
+    const menuCloseButton = document.querySelector('.menu-close');
+    if (menuCloseButton && navMenu) {
+        menuCloseButton.addEventListener('click', () => {
+            navMenu.classList.remove('active');
             
-            // Animação das barras para formar um X
-            const bars = menuToggle.querySelectorAll('span');
-            if (mainMenu.classList.contains('active')) {
-                bars[0].style.transform = 'translateY(8px) rotate(45deg)';
-                bars[1].style.opacity = '0';
-                bars[2].style.transform = 'translateY(-8px) rotate(-45deg)';
-            } else {
+            // Resetar o ícone do hambúrguer
+            if (menuToggle) {
+                const bars = menuToggle.querySelectorAll('span');
                 bars[0].style.transform = 'none';
                 bars[1].style.opacity = '1';
                 bars[2].style.transform = 'none';
             }
-        });
-    }
-    
-    // Fechar menu ao clicar em um link
-    const mainMenuLinks = document.querySelectorAll('.main-menu a');
-    mainMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mainMenu.classList.remove('active');
-            
-            // Resetar o ícone do hambúrguer
-            const bars = menuToggle.querySelectorAll('span');
-            bars[0].style.transform = 'none';
-            bars[1].style.opacity = '1';
-            bars[2].style.transform = 'none';
-        });
-    });
-    
-    // Botão de fechar o menu
-    const menuCloseButton = document.querySelector('.menu-close');
-    if (menuCloseButton && mainMenu) {
-        menuCloseButton.addEventListener('click', () => {
-            mainMenu.classList.remove('active');
-            
-            // Resetar o ícone do hambúrguer
-            const bars = menuToggle.querySelectorAll('span');
-            bars[0].style.transform = 'none';
-            bars[1].style.opacity = '1';
-            bars[2].style.transform = 'none';
         });
     }
     

@@ -16,14 +16,23 @@ let introAnimationCompleted = false; // Para verificar se a animação de entrad
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
+    // Verificar se deve pular a animação de aterrissagem (vindo do menu mobile)
+    const urlParams = new URLSearchParams(window.location.search);
+    const skipLanding = urlParams.get('skipLanding') === 'true';
+    
     // Inicializar Three.js para nebulosa
     initHeroCanvas();
     
     // Criar efeito de velocidade da luz para a animação de entrada
     createStarfieldEffect();
     
-    // Iniciar a animação de entrada
-    startIntroAnimation();
+    if (skipLanding) {
+        // Pular a animação de aterrissagem e mostrar diretamente o conteúdo
+        skipIntroAnimation();
+    } else {
+        // Iniciar a animação normal de entrada
+        startIntroAnimation();
+    }
     
     // Efeito de scroll para transição
     initScrollTransition();
@@ -571,6 +580,67 @@ function startIntroAnimation() {
     
     // Iniciar o efeito de tremor
     addCameraShake();
+}
+
+// Nova função para pular a animação de aterrissagem
+function skipIntroAnimation() {
+    isIntroAnimationPlaying = false;
+    introAnimationCompleted = true;
+    
+    // Configurar a visibilidade dos elementos 3D
+    if (nebula) nebula.visible = true;
+    if (stars) stars.visible = true;
+    if (starfieldParticles) starfieldParticles.visible = false;
+    
+    // Posicionar a câmera diretamente na posição final
+    if (camera) camera.position.z = 45;
+    
+    // Remover o efeito de blur
+    document.body.classList.add('completed');
+    
+    // Mostrar todos os elementos que normalmente ficam ocultos durante a animação
+    const navElements = document.querySelectorAll('.nav-hidden-on-landing');
+    const heroContent = document.querySelector('.hero-content-hidden-on-landing');
+    const scrollIndicator = document.querySelector('.hero-scroll-indicator-hidden-on-landing');
+    
+    // Mostrar elementos de navegação
+    navElements.forEach(el => {
+        el.style.opacity = '1';
+        el.style.visibility = 'visible';
+        el.style.pointerEvents = 'auto';
+        el.classList.add('show-after-landing');
+    });
+    
+    // Mostrar conteúdo do hero
+    if (heroContent) {
+        heroContent.style.opacity = '1';
+        heroContent.style.visibility = 'visible';
+        heroContent.style.pointerEvents = 'auto';
+        heroContent.classList.add('show-after-landing');
+    }
+    
+    // Mostrar indicador de scroll (em desktop)
+    if (scrollIndicator && window.innerWidth > 768) {
+        scrollIndicator.style.opacity = '1';
+        scrollIndicator.style.visibility = 'visible';
+        scrollIndicator.style.pointerEvents = 'auto';
+        scrollIndicator.classList.add('show-after-landing');
+    }
+    
+    // Garantir que elementos específicos sejam mostrados
+    const specificElements = [
+        document.querySelector('.logo'),
+        document.querySelector('.social-icons'),
+        document.querySelector('.menu-toggle')
+    ];
+    
+    specificElements.forEach(el => {
+        if (el) {
+            el.style.opacity = '1';
+            el.style.visibility = 'visible';
+            el.style.pointerEvents = 'auto';
+        }
+    });
 }
 
 // Responder ao movimento do mouse

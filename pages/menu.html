@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lucas Veroneze">
+    <title>Menu - 2GO Marketing</title>
+    <link rel="stylesheet" href="../vendor/fonts/fonts.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../assets/Logotipo.png" type="image/x-icon">
+    <style>
+        /* Estilos específicos para o menu de tela cheia */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .fullscreen-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000000;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000000;
+            overflow: hidden;
+        }
+        
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 58, 58, 0.2);
+        }
+        
+        .menu-logo img {
+            height: 50px;
+        }
+        
+        .menu-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .menu-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .menu-nav-list li {
+            margin-bottom: 1.5rem;
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: fadeInRight 0.5s forwards;
+        }
+        
+        .menu-nav-list li:nth-child(1) { animation-delay: 0.1s; }
+        .menu-nav-list li:nth-child(2) { animation-delay: 0.2s; }
+        .menu-nav-list li:nth-child(3) { animation-delay: 0.3s; }
+        .menu-nav-list li:nth-child(4) { animation-delay: 0.4s; }
+        .menu-nav-list li:nth-child(5) { animation-delay: 0.5s; }
+        
+        .menu-nav-list a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .menu-nav-list a:hover {
+            color: #FF3A3A;
+            transform: translateX(10px);
+        }
+        
+        .menu-nav-list a i {
+            margin-right: 15px;
+            color: #FF3A3A;
+            font-size: 1.4rem;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .menu-footer {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 58, 58, 0.2);
+        }
+        
+        .menu-social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .menu-social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-social-icons a:hover {
+            background-color: #FF3A3A;
+            transform: translateY(-5px);
+        }
+        
+        .menu-close-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #FF3A3A;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-close-btn i {
+            color: white;
+            font-size: 24px;
+        }
+        
+        .menu-close-btn:hover {
+            background-color: #e62e2e;
+            transform: rotate(90deg);
+        }
+        
+        /* Efeito de borda neon lateral */
+        .neon-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #ff3a3a, transparent);
+            animation: neonBorderAnim 4s linear infinite;
+        }
+        
+        @keyframes neonBorderAnim {
+            0% { top: -100%; }
+            50% { top: 100%; }
+            100% { top: -100%; }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Animação de fundo */
+        .menu-bg-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, rgba(50, 5, 5, 0.5) 0%, rgba(0, 0, 0, 0) 70%);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        
+        .menu-contact-btn {
+            display: inline-block;
+            background-color: #FF3A3A;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 2rem;
+            align-self: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 58, 58, 0.3);
+        }
+        
+        .menu-contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 58, 58, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="fullscreen-menu">
+        <div class="neon-border"></div>
+        <div class="menu-bg-effect"></div>
+        
+        <div class="menu-header">
+            <div class="menu-logo">
+                <img src="../assets/Logotipo-branco.png" alt="2GO Marketing Logo">
+            </div>
+            <button class="menu-close-btn" onclick="closeMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="menu-content">
+            <ul class="menu-nav-list">
+                <li><a href="../index.html#home"><i class="fas fa-bullseye"></i>Propósito</a></li>
+                <li><a href="../index.html#services"><i class="fas fa-cogs"></i>O que fazemos</a></li>
+                <li><a href="../index.html#team"><i class="fas fa-users"></i>Time</a></li>
+                <li><a href="../index.html#testimonials"><i class="fas fa-comment-dots"></i>Depoimentos</a></li>
+                <li><a href="../index.html#cases"><i class="fas fa-briefcase"></i>Nossos clientes</a></li>
+            </ul>
+            
+            <a href="../index.html#contact" class="menu-contact-btn">Fale Conosco</a>
+        </div>
+        
+        <div class="menu-footer">
+            <div class="menu-social-icons">
+                <a href="https://www.instagram.com/2gomkt/" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=5524992028552&text=Gostaria%20de%20saber%20mais%20sobre%20a%202GO%20Marketing!" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/2gomkt/" title="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/company/2gomarketing/?originalSubdomain=br" title="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Função para fechar o menu e voltar para a página anterior
+        function closeMenu() {
+            window.location.href = '../index.html?skipLanding=true';
+        }
+        
+        // Fechar menu ao clicar em um link de navegação
+        document.querySelectorAll('.menu-nav-list a, .menu-contact-btn').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Adicionar parâmetro para pular a animação de aterrissagem
+                let href = this.getAttribute('href');
+                if (href.indexOf('?') > -1) {
+                    this.setAttribute('href', href + '&skipLanding=true');
+                } else {
+                    this.setAttribute('href', href + '?skipLanding=true');
+                }
+                // Permitir que o link navegue normalmente
+            });
+        });
+    </script>
+</body>
+</html>

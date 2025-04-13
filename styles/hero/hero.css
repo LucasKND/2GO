@@ -11,7 +11,7 @@ header {
 
 .container {
     position: relative;
-    z-index: 10;
+    z-index: 5; /* Reduzido de 10 para priorizar o menu mobile */
 }
 
 .hero-canvas-container {
@@ -271,7 +271,7 @@ header {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 9000; /* Reduzido para ficar abaixo do menu mobile */
 }
 
 .cursor-dot {
@@ -281,7 +281,7 @@ header {
     background: rgba(255, 58, 58, 0.8);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9999;
+    z-index: 9000; /* Reduzido para ficar abaixo do menu mobile */
     mix-blend-mode: difference;
 }
 
@@ -292,7 +292,7 @@ header {
     border: 2px solid rgba(255, 58, 58, 0.3);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9998;
+    z-index: 8999; /* Reduzido para ficar abaixo do menu mobile */
     transition: width 0.3s, height 0.3s;
 }
 
@@ -306,7 +306,7 @@ header {
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 0.3s;
-    z-index: 9999;
+    z-index: 9000; /* Reduzido para ficar abaixo do menu mobile */
 }
 
 body {
@@ -322,7 +322,7 @@ a, button, .interactive {
     color: var(--text-light);
     max-width: 600px;
     position: relative;
-    z-index: 10;
+    z-index: 5; /* Reduzido de 10 para priorizar o menu mobile */
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s forwards 0.5s;
@@ -533,9 +533,20 @@ a, button, .interactive {
     }
 }
 
+/* Ocultar o indicador de scroll (EXPLORE e ícone do mouse) em tablets e celulares */
+@media (max-width: 1024px) {
+    .hero-scroll-indicator {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
     .hero-scroll-indicator {
         bottom: 20px;
+    }
+    /* Ocultar o indicador de scroll (EXPLORE e ícone do mouse) em tablets e celulares */
+    .hero-scroll-indicator {
+        display: none;
     }
 }
 
