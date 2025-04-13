@@ -42,9 +42,9 @@
     content: '';
     position: absolute;
     top: 0;
-    width: 25vw; /* Aumente a área do gradiente */
+    width: 120px; /* Largura fixa para o gradiente */
     height: 100%;
-    z-index: var(--z-tooltip);
+    z-index: 5;
     pointer-events: none;
 }
 
@@ -52,7 +52,7 @@
     left: 0;
     background: linear-gradient(to right, 
         var(--bg-darker) 0%, 
-        rgba(var(--bg-darker), 0.85) 50%, 
+        rgba(var(--bg-darker-rgb), 0.85) 50%, 
         transparent 100%
     );
 }
@@ -61,7 +61,7 @@
     right: 0;
     background: linear-gradient(to left, 
         var(--bg-darker) 0%, 
-        rgba(var(--bg-darker), 0.85) 50%, 
+        rgba(var(--bg-darker-rgb), 0.85) 50%, 
         transparent 100%
     );
 }
@@ -69,16 +69,9 @@
 /* Scrolling track */
 .clients-track {
     display: flex;
-    animation: scroll 50s linear infinite;
-    width: fit-content;
-    /* Adiciona um segundo conjunto de logos para scroll infinito */
-    padding-right: 100vw;
+    animation: scrollInfinite 40s linear infinite;
+    width: max-content; /* Permite que a largura se ajuste ao conteúdo */
 }
-
-/* Remover hover pause */
-/* .clients-track:hover {
-    animation-play-state: paused;
-} */
 
 /* Logo styles */
 .client-logo {
@@ -90,6 +83,7 @@
     min-width: 180px;
     height: 100px;
     transition: transform 0.3s ease;
+    cursor: default; /* Define o cursor como padrão (default) ao passar sobre as logos */
 }
 
 .client-logo img {
@@ -106,8 +100,8 @@
     max-height: 65px;
 }
 
-.client-logo img[src*="Bella-Foto.png"] {
-    max-width: 180px; /* Tamanho aumentado ainda mais para o logo Bella-Foto */
+.client-logo img[src*="logobellafoto.png"] {
+    max-width: 180px; /* Tamanho aumentado ainda mais para o logo Bella Foto */
     max-height: 100px;
 }
 
@@ -116,14 +110,13 @@
     transform: scale(1.1);
 }
 
-/* Moving animation */
-@keyframes scroll {
+/* Moving animation - versão melhorada para scroll infinito */
+@keyframes scrollInfinite {
     0% {
         transform: translateX(0);
     }
     100% {
-        /* Ajusta para rolar uma volta completa dos itens */
-        transform: translateX(-50%);
+        transform: translateX(calc(-50%)); /* Move exatamente metade da largura total */
     }
 }
 
@@ -165,19 +158,15 @@
     .client-logo img {
         max-width: 100px;
     }
-    
-    @keyframes scroll {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-50%);
-        }
-    }
 }
 
 @media (max-width: 576px) {
     .clients-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .clients-container::before,
+    .clients-container::after {
+        width: 60px;
     }
 }
