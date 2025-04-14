@@ -1,15 +1,8 @@
-/**
- * Experiência Narrativa Visual para a Seção "Nosso Propósito"
- * Implementa animações avançadas, efeitos 3D e interatividade
- */
-
-// Inicialização quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     // Verificar se a seção existe
     const purposeSection = document.querySelector('#purpose');
     if (!purposeSection) return;
-    
-    // Inicializar todas as partes da experiência
+
     initBackgroundLayers();
     initCodeToTitle();
     initProgressiveText();

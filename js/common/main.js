@@ -5,29 +5,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cursor personalizado
     const cursor = document.querySelector('.cursor');
     
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-    
-    document.addEventListener('mousedown', () => {
-        cursor.classList.add('grow');
-    });
-    
-    document.addEventListener('mouseup', () => {
-        cursor.classList.remove('grow');
-    });
+    if (cursor) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('grow');
+        });
+        
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('grow');
+        });
+    }
     
     // Elementos interativos que mudam o cursor
     const interactiveElements = document.querySelectorAll('a, button, .card, .service-card, .client-logo, .team-member');
     
     interactiveElements.forEach(element => {
         element.addEventListener('mouseenter', () => {
-            cursor.classList.add('grow');
+            if (cursor) cursor.classList.add('grow');
         });
         
         element.addEventListener('mouseleave', () => {
-            cursor.classList.remove('grow');
+            if (cursor) cursor.classList.remove('grow');
         });
     });
     
@@ -77,17 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 bars[2].style.transform = 'none';
             }
         });
-    });
-    
-    // Botão voltar ao topo
-    const backToTopButton = document.getElementById('backToTop');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            backToTopButton.classList.add('active');
-        } else {
-            backToTopButton.classList.remove('active');
-        }
     });
     
     // Botão de fechar o menu
@@ -201,4 +192,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    const footer = document.querySelector('footer');
 });

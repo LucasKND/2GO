@@ -10,7 +10,6 @@
     overflow: hidden;
 }
 
-/* Removendo o gradiente do centro */
 #services::before {
     display: none;
 }
@@ -84,7 +83,7 @@
 .box:hover:before,
 .box:hover:after {
     transform: skewX(0deg) scaleX(1.3);
-    left: 67px; /* Movendo mais para a direita no hover */
+    left: 67px;
 }
 
 .box:nth-child(1):before,
@@ -146,7 +145,7 @@
 
 .box:hover span:after {
     bottom: -50px;
-    right: 100px; /* Aumentado de 50px para 100px para manter a simetria */
+    right: 100px;
     width: 100px;
     height: 100px;
     opacity: 1;
@@ -176,15 +175,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; /* Mudando de center para flex-start */
-    text-align: left; /* Mudando de center para left */
+    align-items: flex-start;
+    text-align: left;
 }
 
 .box .content h2 {
     font-size: 1.8rem;
     color: #fff;
     margin-bottom: 10px;
-    text-align: left; /* Garantindo que o título também fique alinhado à esquerda */
+    text-align: left;
 }
 
 .box .content p {
@@ -192,7 +191,7 @@
     color: #fff;
     margin-bottom: 20px;
     line-height: 1.4;
-    text-align: left; /* Garantindo que o parágrafo também fique alinhado à esquerda */
+    text-align: left;
 }
 
 .box .content a {

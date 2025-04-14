@@ -21,21 +21,24 @@
     position: relative;
     transform-style: preserve-3d;
     perspective: 1000px;
+    cursor: default;
 }
 
 .member-photo {
-    width: 90%; /* Reduzido de 100% para 90% */
+    width: 90%;
     position: relative;
     z-index: 2;
-    margin: 0 auto; /* Centraliza horizontalmente */
+    margin: 0 auto;
+    cursor: default;
 }
 
 .member-photo img {
     width: 100%;
     display: block;
     object-fit: cover;
-    transform: translateY(40px); /* Posiciona a imagem sobre o card info */
+    transform: translateY(40px);
     transition: transform 0.3s ease;
+    cursor: default;
 }
 
 .team-member:hover .member-photo img {
@@ -45,21 +48,20 @@
 .member-info {
     background-color: var(--bg-dark);
     text-align: center;
-    padding: 60px var(--spacing-md) var(--spacing-sm); /* Reduzido o padding inferior */
+    padding: 60px var(--spacing-md) var(--spacing-sm);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: var(--border-radius-sm);
     position: relative;
     z-index: 1;
-    margin-top: -40px; /* Ajuste para que o card fique parcialmente atrás da imagem */
 }
 
 .member-info h3 {
     font-size: 1.6rem;
-    margin-bottom: 0; /* Removido o espaçamento entre nome e função */
+    margin-bottom: 0;
     color: var(--primary-color);
     font-weight: 600;
-    font-family: 'Bebas Neue', sans-serif; /* Adicionada a fonte Bebas Neue */
-    letter-spacing: 1px; /* Melhor espaçamento para Bebas Neue */
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
 }
 
 .member-info > p {
@@ -67,10 +69,9 @@
     font-size: 0.9rem;
     font-weight: 500;
     text-transform: uppercase;
-    margin-top: 0; /* Aproxima o cargo do nome */
+    margin-top: 0;
 }
 
-/* Removendo o conteúdo de member-bio não utilizado */
 .member-bio {
     display: none;
 }

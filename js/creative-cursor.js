@@ -1,34 +1,22 @@
-/**
- * Script para criar um cursor personalizado avançado
- * Implementa efeitos de partículas, rastros e interações
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Elementos para o cursor personalizado
     const cursor = document.querySelector('.cursor');
     const cursorDot = document.createElement('div');
     cursorDot.classList.add('cursor-dot');
     document.body.appendChild(cursorDot);
-    
-    // Texto do cursor para elementos interativos
     const cursorText = document.createElement('div');
     cursorText.classList.add('cursor-text');
     document.body.appendChild(cursorText);
     
-    // Coordenadas iniciais do cursor
     let mouseX = 0;
     let mouseY = 0;
     
-    // Coordenadas com atraso para efeito de suavização
     let cursorX = 0;
     let cursorY = 0;
-    
-    // Histórico de posições para o rastro do cursor
+   
     const cursorTrail = [];
     const trailLength = 20;
     const trailElements = [];
-    
-    // Criar elementos para o rastro
+
     for (let i = 0; i < trailLength; i++) {
         const trail = document.createElement('div');
         trail.classList.add('cursor-trail');
@@ -46,31 +34,24 @@ document.addEventListener('DOMContentLoaded', () => {
         trailElements.push(trail);
     }
     
-    // Atualizar posição do mouse
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         
-        // Armazenar a posição atual para o rastro
         cursorTrail.push({ x: mouseX, y: mouseY });
         
-        // Manter apenas as posições mais recentes
         if (cursorTrail.length > trailLength) {
             cursorTrail.shift();
         }
         
-        // Atualizar texto do cursor para elementos interativos
         updateCursorText(e.target);
     });
     
-    // Mostrar texto diferente baseado no tipo de elemento
     function updateCursorText(element) {
-        // Verificar se é um elemento interativo
         if (element.tagName === 'A' || element.tagName === 'BUTTON' || element.classList.contains('expertise-item')) {
             cursorText.textContent = 'Ver';
             cursorText.classList.add('active');
             
-            // Verificar se é um link específico
             if (element.classList.contains('cta-button')) {
                 cursorText.textContent = 'Iniciar';
             }
@@ -79,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Eventos para elementos interativos
     const interactiveElements = document.querySelectorAll('a, button, .expertise-item, .service-card, .team-member');
     
     interactiveElements.forEach(element => {
@@ -87,10 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor.classList.add('grow');
             document.body.style.cursor = 'none';
             
-            // Adicionar classe específica para o elemento
             element.classList.add('cursor-focus');
             
-            // Adicionar magnetismo para elementos importantes
             if (element.classList.contains('cta-button') || element.classList.contains('expertise-item')) {
                 element.dataset.magnetism = 'true';
             }
@@ -100,27 +78,22 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor.classList.remove('grow');
             document.body.style.cursor = 'auto';
             
-            // Remover classe específica
             element.classList.remove('cursor-focus');
             
-            // Resetar posição se tiver magnetismo
             if (element.dataset.magnetism === 'true') {
                 gsap.to(element, { x: 0, y: 0, duration: 0.3, ease: 'power3.out' });
             }
         });
         
-        // Efeito de magnetismo para elementos importantes
         element.addEventListener('mousemove', (e) => {
             if (element.dataset.magnetism === 'true') {
                 const rect = element.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
                 
-                // Calcular distância do cursor ao centro
                 const distanceX = e.clientX - centerX;
                 const distanceY = e.clientY - centerY;
                 
-                // Aplicar efeito de magnetismo (mais forte quanto mais próximo)
                 const strength = 0.2;
                 gsap.to(element, {
                     x: distanceX * strength,
@@ -131,8 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    
-    // Efeito de clique
+
     document.addEventListener('mousedown', () => {
         cursor.classList.add('click');
         gsap.to(cursor, {
@@ -151,9 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Função de animação do cursor
     function animateCursor() {
-        // Suavização do movimento do cursor
         cursorX += (mouseX - cursorX) * 0.1;
         cursorY += (mouseY - cursorY) * 0.1;
         
@@ -163,18 +133,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         if (cursorDot) {
-            // Movimento mais imediato para o ponto central
             cursorDot.style.left = `${mouseX}px`;
             cursorDot.style.top = `${mouseY}px`;
         }
         
         if (cursorText) {
-            // Posicionar o texto do cursor
             cursorText.style.left = `${mouseX}px`;
             cursorText.style.top = `${mouseY - 30}px`;
         }
         
-        // Atualizar posição dos elementos de rastro
         for (let i = 0; i < trailElements.length; i++) {
             if (cursorTrail[i]) {
                 gsap.to(trailElements[i], {
@@ -189,10 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animateCursor);
     }
     
-    // Iniciar animação
     animateCursor();
     
-    // Adicionar estilos CSS diretamente para os elementos do cursor
     const style = document.createElement('style');
     style.innerHTML = `
         .cursor {

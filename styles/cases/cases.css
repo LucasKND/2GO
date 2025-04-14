@@ -1,23 +1,18 @@
-/* Estilos para a seção de Cases de Sucesso */
-
-/* Infinite Scrolling Clients Section */
 #cases {
     position: relative;
     overflow: hidden;
     background: inherit;
-    /* Remove top padding to allow for seamless connection with gradient */
     padding-top: 0;
-    margin-top: -60px; /* Pull up to overlap with services section */
+    margin-top: -60px;
     width: 100vw;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* Ensure content is above the background */
 #cases .container {
     position: relative;
     z-index: 2;
-    padding-top: 60px; /* Add padding to ensure content doesn't overlap with services */
+    padding-top: 60px;
 }
 
 .clients-grid {
@@ -36,13 +31,12 @@
     transform: translateX(-50%);
 }
 
-/* Gradient fade edges */
 .clients-container::before,
 .clients-container::after {
     content: '';
     position: absolute;
     top: 0;
-    width: 120px; /* Largura fixa para o gradiente */
+    width: 120px;
     height: 100%;
     z-index: 5;
     pointer-events: none;
@@ -66,14 +60,12 @@
     );
 }
 
-/* Scrolling track */
 .clients-track {
     display: flex;
     animation: scrollInfinite 40s linear infinite;
-    width: max-content; /* Permite que a largura se ajuste ao conteúdo */
+    width: max-content;
 }
 
-/* Logo styles */
 .client-logo {
     flex: 0 0 auto;
     display: flex;
@@ -83,7 +75,7 @@
     min-width: 180px;
     height: 100px;
     transition: transform 0.3s ease;
-    cursor: default; /* Define o cursor como padrão (default) ao passar sobre as logos */
+    cursor: default;
 }
 
 .client-logo img {
@@ -91,17 +83,16 @@
     max-height: 80px;
     transition: var(--transition-normal);
     filter: grayscale(1) opacity(0.7);
-    transition: all 0.3s ease;
+    cursor: default;
 }
 
-/* Ajustes específicos para alguns logos */
 .client-logo img[src*="logoG2.png"] {
-    max-width: 110px; /* Tamanho reduzido para o logo G2 */
+    max-width: 110px;
     max-height: 65px;
 }
 
 .client-logo img[src*="logobellafoto.png"] {
-    max-width: 180px; /* Tamanho aumentado ainda mais para o logo Bella Foto */
+    max-width: 180px;
     max-height: 100px;
 }
 
@@ -110,17 +101,15 @@
     transform: scale(1.1);
 }
 
-/* Moving animation - versão melhorada para scroll infinito */
 @keyframes scrollInfinite {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-50%)); /* Move exatamente metade da largura total */
+        transform: translateX(calc(-50%));
     }
 }
 
-/* Remove the hover details for cleaner look */
 .client-hover {
     display: none;
 }
@@ -137,7 +126,6 @@
     opacity: 0.9;
 }
 
-/* Responsividade */
 @media (max-width: 992px) {
     .clients-grid {
         grid-template-columns: repeat(2, 1fr);

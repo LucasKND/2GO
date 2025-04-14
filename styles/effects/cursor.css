@@ -119,9 +119,15 @@ canvas[data-engine="three.js"],
 }
 
 /* Restaurar cursor pointer apenas para elementos realmente interativos */
-a, button, .interactive, .service-card, .team-member, 
-.submit-button, .cta-button, .expertise-item, .client-logo {
+a, button, .interactive, .service-card, 
+.submit-button, .cta-button, .expertise-item {
     cursor: pointer;
+}
+
+/* Elementos que devem ter cursor default */
+.team-member, .member-photo, .member-photo img,
+.client-logo, .client-logo img {
+    cursor: default !important;
 }
 
 /* Resto do CSS do cursor permanece igual */

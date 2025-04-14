@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="../assets/Logotipo.png" type="image/x-icon">
     <style>
-        /* Estilos específicos para o menu de tela cheia */
         body {
             margin: 0;
             padding: 0;
@@ -150,8 +149,7 @@
             background-color: #e62e2e;
             transform: rotate(90deg);
         }
-        
-        /* Efeito de borda neon lateral */
+
         .neon-border {
             position: absolute;
             top: 0;
@@ -179,7 +177,6 @@
             }
         }
         
-        /* Animação de fundo */
         .menu-bg-effect {
             position: absolute;
             top: 0;
@@ -250,22 +247,17 @@
     </div>
     
     <script>
-        // Função para fechar o menu e voltar para a página anterior
         function closeMenu() {
             window.location.href = '../index.html?skipLanding=true';
         }
-        
-        // Fechar menu ao clicar em um link de navegação
         document.querySelectorAll('.menu-nav-list a, .menu-contact-btn').forEach(link => {
             link.addEventListener('click', function(e) {
-                // Adicionar parâmetro para pular a animação de aterrissagem
                 let href = this.getAttribute('href');
                 if (href.indexOf('?') > -1) {
                     this.setAttribute('href', href + '&skipLanding=true');
                 } else {
                     this.setAttribute('href', href + '?skipLanding=true');
                 }
-                // Permitir que o link navegue normalmente
             });
         });
     </script>

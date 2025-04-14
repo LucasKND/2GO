@@ -1,22 +1,13 @@
-/**
- * Animações de texto avançadas
- * Implementa efeitos de glitch, divisão, onda, reconstrução de texto e repulsão de letras
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar biblioteca Splitting para dividir textos em caracteres/palavras
     if (typeof Splitting !== 'undefined') {
         const splitResults = Splitting({ target: '.split-text, .split-chars', by: 'chars' });
         
-        // Aplicar animações personalizadas para cada resultado
         splitResults.forEach(result => {
             const chars = result.chars;
             const words = result.words;
             const element = result.el;
             
-            // Diferentes efeitos baseados na classe do elemento
             if (element.classList.contains('split-text')) {
-                // Animação de entrada para texto dividido palavra por palavra
                 gsap.fromTo(chars, {
                     opacity: 0,
                     y: 20,
@@ -34,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             } else if (element.classList.contains('split-chars')) {
-                // Animação de onda para caracteres
                 chars.forEach((char, index) => {
                     gsap.set(char, { transformOrigin: "center center -30px" });
                 });
@@ -59,36 +49,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Efeito de glitch para títulos
     initGlitchEffect();
-    
-    // Efeito de texto líquido para títulos específicos
     initLiquidTextEffect();
-    
-    // Efeito de máquina de escrever para textos selecionados
     initTypewriterEffect();
-    
-    // Efeito de repulsão de letras - novo efeito
     initLetterRepulsionEffect();
 });
 
-// Efeito de glitch para títulos
 function initGlitchEffect() {
     const glitchTitles = document.querySelectorAll('.glitch-title');
     
     glitchTitles.forEach(title => {
-        // Criar camadas de glitch
         const glitchWrapper = document.createElement('div');
         glitchWrapper.classList.add('glitch-wrapper');
         
-        // Obter texto e atributo data-text
         const originalText = title.textContent;
         const glitchText = title.getAttribute('data-text') || originalText;
         
-        // Limpar conteúdo original
         title.textContent = '';
         
-        // Criar camadas de glitch
         const textElement = document.createElement('div');
         textElement.classList.add('glitch-text', 'original');
         textElement.textContent = glitchText;
@@ -101,13 +79,11 @@ function initGlitchEffect() {
         afterElement.classList.add('glitch-text', 'after');
         afterElement.textContent = glitchText;
         
-        // Montar estrutura
         glitchWrapper.appendChild(beforeElement);
         glitchWrapper.appendChild(textElement);
         glitchWrapper.appendChild(afterElement);
         title.appendChild(glitchWrapper);
         
-        // Adicionar evento de movimento do mouse para ampliar efeito
         document.addEventListener('mousemove', e => {
             const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
             const moveY = (e.clientY / window.innerHeight - 0.5) * 5;
@@ -125,7 +101,6 @@ function initGlitchEffect() {
             });
         });
         
-        // Ativar efeito de glitch em intervalos aleatórios
         const triggerGlitch = () => {
             title.classList.add('glitching');
             
@@ -133,15 +108,12 @@ function initGlitchEffect() {
                 title.classList.remove('glitching');
             }, 200 + Math.random() * 300);
             
-            // Agendar próximo glitch
             const nextGlitchDelay = 3000 + Math.random() * 5000;
             setTimeout(triggerGlitch, nextGlitchDelay);
         };
         
-        // Iniciar efeito de glitch
         setTimeout(triggerGlitch, 2000 + Math.random() * 2000);
         
-        // Ativar glitch ao entrar na visualização
         ScrollTrigger.create({
             trigger: title,
             start: "top 80%",
@@ -154,17 +126,14 @@ function initGlitchEffect() {
     });
 }
 
-// Efeito de texto líquido para subtítulos
 function initLiquidTextEffect() {
     const liquidTexts = document.querySelectorAll('.liquid-text');
     
     liquidTexts.forEach(text => {
-        // Adicionar ScrollTrigger para efeito de entrada
         ScrollTrigger.create({
             trigger: text,
             start: "top 85%",
             onEnter: () => {
-                // Cria uma timeline para a animação de entrada
                 const tl = gsap.timeline();
                 
                 tl.fromTo(text, {
@@ -179,7 +148,6 @@ function initLiquidTextEffect() {
                     ease: "power3.out"
                 });
                 
-                // Adicionar efeito de "líquido" na linha sob o texto
                 if (text.classList.contains('expertise-title')) {
                     const parent = text.closest('.expertise-item-content');
                     
@@ -201,13 +169,10 @@ function initLiquidTextEffect() {
     });
 }
 
-// Efeito de máquina de escrever para textos selecionados
 function initTypewriterEffect() {
-    // Aplicar o efeito a elementos com classe específica, como depoimentos
     const typewriterElements = document.querySelectorAll('.testimonial-content p');
     
     typewriterElements.forEach((element, index) => {
-        // Obter o texto original
         const originalText = element.textContent;
         
         // Criar wrapper para o cursor

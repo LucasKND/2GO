@@ -1,4 +1,3 @@
-/* Estilos base */
 * {
     margin: 0;
     padding: 0;
@@ -38,7 +37,6 @@ img {
     height: auto;
 }
 
-/* Container */
 .container {
     width: 100%;
     max-width: 1200px;
@@ -46,7 +44,6 @@ img {
     padding: 0 var(--spacing-sm);
 }
 
-/* Títulos e Textos */
 .section-title {
     font-size: 2.5rem;
     font-weight: 700;
@@ -74,12 +71,10 @@ img {
     margin-right: auto;
 }
 
-/* Seções */
 .section-padding {
     padding: var(--spacing-lg) 0;
 }
 
-/* Botões */
 .cta-button {
     display: inline-block;
     background-color: var(--primary-color);
@@ -101,7 +96,6 @@ img {
     box-shadow: var(--shadow-lg);
 }
 
-/* Cursor personalizado */
 .cursor {
     position: fixed;
     width: 20px;
@@ -121,37 +115,6 @@ img {
     background-color: rgba(255, 58, 58, 0.3);
 }
 
-/* Botão voltar ao topo */
-.back-to-top {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: var(--z-fixed);
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition-normal);
-    box-shadow: var(--shadow-md);
-}
-
-.back-to-top.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.back-to-top:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-3px);
-}
-
-/* Efeito de fundo com partículas */
 #particles-js {
     position: fixed;
     width: 100%;
@@ -162,7 +125,12 @@ img {
     background-color: var(--bg-dark);
 }
 
-/* Responsividade */
+.nav-hidden-on-landing {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
 @media (max-width: 992px) {
     .section-title {
         font-size: 2.2rem;

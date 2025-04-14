@@ -1,37 +1,22 @@
-/**
- * Script para criar backgrounds WebGL avançados
- * Implementa fundos dinâmicos com partículas, gradientes e efeitos fluidos
- */
-
-// Variáveis globais para o Three.js
 let camera, scene, renderer;
 let expertiseBackground;
 let particleSystem;
 let gradientMaterial;
 let time = 0;
 
-// Inicializa quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-    // Verificar se a seção de expertise existe
     expertiseBackground = document.getElementById('expertise-background');
     if (expertiseBackground) {
         initExpertiseBackground();
         animateExpertiseBackground();
     }
-    
-    // Inicializar fontes para outras seções conforme necessário
+
     initHeroBackground();
-    // initServicesBackground();
-    // initContactBackground();
 });
 
-// Inicializa o background WebGL para a seção de expertise
 function initExpertiseBackground() {
-    // Configuração básica do Three.js
     const width = expertiseBackground.clientWidth;
     const height = expertiseBackground.clientHeight;
-    
-    // Criar cena, câmera e renderer
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
     camera.position.z = 30;
@@ -44,7 +29,6 @@ function initExpertiseBackground() {
     renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
     expertiseBackground.appendChild(renderer.domElement);
     
-    // Adicionar redimensionamento responsivo
     window.addEventListener('resize', () => {
         const newWidth = expertiseBackground.clientWidth;
         const newHeight = expertiseBackground.clientHeight;
@@ -54,11 +38,9 @@ function initExpertiseBackground() {
         renderer.setSize(newWidth, newHeight);
     });
     
-    // Criar materiais e shaders
     createLiquidGradientBackground();
     createParticleSystem();
     
-    // Adicionar luzes para dar profundidade
     const ambientLight = new THREE.AmbientLight(0x404040);
     scene.add(ambientLight);
     
@@ -73,9 +55,7 @@ function initExpertiseBackground() {
     scene.add(spotLight);
 }
 
-// Cria um background de gradiente líquido com shaders
 function createLiquidGradientBackground() {
-    // Vertex shader
     const vertexShader = `
         varying vec2 vUv;
         void main() {
@@ -84,7 +64,6 @@ function createLiquidGradientBackground() {
         }
     `;
     
-    // Fragment shader para criar o efeito líquido
     const fragmentShader = `
         uniform float time;
         uniform vec2 resolution;
@@ -150,7 +129,6 @@ function createLiquidGradientBackground() {
         }
     `;
     
-    // Criar material com os shaders
     gradientMaterial = new THREE.ShaderMaterial({
         uniforms: {
             time: { value: 0 },
@@ -160,45 +138,32 @@ function createLiquidGradientBackground() {
         fragmentShader: fragmentShader
     });
     
-    // Criar plano para o background
     const plane = new THREE.PlaneGeometry(100, 100);
     const gradientMesh = new THREE.Mesh(plane, gradientMaterial);
     gradientMesh.position.z = -10;
     scene.add(gradientMesh);
 }
 
-// Cria um sistema de partículas para adicionar profundidade
 function createParticleSystem() {
     const particleCount = 1000;
     const particleGeometry = new THREE.BufferGeometry();
-    
-    // Arrays para posições e tamanhos
     const positions = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
     const colors = new Float32Array(particleCount * 3);
     
-    // Gerar partículas aleatórias
     for (let i = 0; i < particleCount; i++) {
-        // Posição
-        positions[i * 3] = (Math.random() - 0.5) * 100;     // x
-        positions[i * 3 + 1] = (Math.random() - 0.5) * 100; // y
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 50;  // z
-        
-        // Tamanho
+        positions[i * 3] = (Math.random() - 0.5) * 100;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
         sizes[i] = Math.random() * 0.5 + 0.1;
-        
-        // Cor (tons de vermelho e branco)
-        colors[i * 3] = Math.random() * 0.5 + 0.5;     // R
-        colors[i * 3 + 1] = Math.random() * 0.2;       // G
-        colors[i * 3 + 2] = Math.random() * 0.2;       // B
+        colors[i * 3] = Math.random() * 0.5 + 0.5;
+        colors[i * 3 + 1] = Math.random() * 0.2;    
     }
     
-    // Adicionar atributos à geometria
     particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     particleGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
     particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
     
-    // Vertex shader para partículas
     const particleVertexShader = `
         attribute float size;
         attribute vec3 color;
@@ -220,7 +185,6 @@ function createParticleSystem() {
         }
     `;
     
-    // Fragment shader para partículas
     const particleFragmentShader = `
         varying vec3 vColor;
         
@@ -233,7 +197,6 @@ function createParticleSystem() {
         }
     `;
     
-    // Material para partículas
     const particleMaterial = new THREE.ShaderMaterial({
         uniforms: {
             time: { value: 0 }
@@ -245,16 +208,13 @@ function createParticleSystem() {
         depthWrite: false
     });
     
-    // Criar sistema de partículas
     particleSystem = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particleSystem);
 }
 
-// Animar o background WebGL
 function animateExpertiseBackground() {
     time += 0.01;
     
-    // Atualizar uniforms de tempo para os shaders
     if (gradientMaterial) {
         gradientMaterial.uniforms.time.value = time;
     }
@@ -262,12 +222,10 @@ function animateExpertiseBackground() {
     if (particleSystem && particleSystem.material.uniforms) {
         particleSystem.material.uniforms.time.value = time;
         
-        // Rotação sutil do sistema de partículas
         particleSystem.rotation.y = time * 0.05;
         particleSystem.rotation.z = time * 0.01;
     }
     
-    // Efeito de parallax com base no movimento do mouse
     document.addEventListener('mousemove', (event) => {
         const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
         const mouseY = (event.clientY / window.innerHeight) * 2 - 1;
@@ -279,24 +237,18 @@ function animateExpertiseBackground() {
         }
     });
     
-    // Renderizar a cena
     if (renderer && scene && camera) {
         renderer.render(scene, camera);
     }
     
-    // Loop de animação
     requestAnimationFrame(animateExpertiseBackground);
 }
 
-// Implementação do background para a Hero Section
 function initHeroBackground() {
     const heroSection = document.getElementById('home');
     if (!heroSection) return;
     
-    // Adicionar classe para tratamento especial
     heroSection.classList.add('hero-dynamic-bg');
-    
-    // Criar canvas para o fundo interativo
     const canvas = document.createElement('canvas');
     canvas.classList.add('hero-canvas');
     canvas.style.position = 'absolute';
@@ -306,11 +258,8 @@ function initHeroBackground() {
     canvas.style.height = '100%';
     canvas.style.pointerEvents = 'none';
     canvas.style.zIndex = '0';
-    
-    // Inserir no início da seção
     heroSection.insertBefore(canvas, heroSection.firstChild);
-    
-    // Dimensionar o canvas para corresponder à resolução da tela
+
     const ctx = canvas.getContext('2d');
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -319,12 +268,10 @@ function initHeroBackground() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     
-    // Criar partículas interativas
     const particles = [];
     const particleCount = 100;
-    const maxDistance = 150; // Distância máxima para desenhar conexões
+    const maxDistance = 150;
     
-    // Inicializar partículas
     for (let i = 0; i < particleCount; i++) {
         particles.push({
             x: Math.random() * canvas.width,
@@ -336,7 +283,6 @@ function initHeroBackground() {
         });
     }
     
-    // Rastrear posição do mouse
     let mouseX = 0;
     let mouseY = 0;
     let mouseRadius = 150;
@@ -346,23 +292,18 @@ function initHeroBackground() {
         mouseY = e.clientY - heroSection.getBoundingClientRect().top;
     });
     
-    // Função de animação
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Atualizar e desenhar partículas
         for (let i = 0; i < particles.length; i++) {
             const p = particles[i];
             
-            // Mover partículas
             p.x += p.vx;
             p.y += p.vy;
             
-            // Verificar limites
             if (p.x < 0 || p.x > canvas.width) p.vx = -p.vx;
             if (p.y < 0 || p.y > canvas.height) p.vy = -p.vy;
             
-            // Interação com o mouse - partículas fogem do cursor
             const dx = p.x - mouseX;
             const dy = p.y - mouseY;
             const dist = Math.sqrt(dx * dx + dy * dy);
@@ -374,20 +315,17 @@ function initHeroBackground() {
                 p.vy += Math.sin(angle) * force * 0.2;
             }
             
-            // Limitar velocidade
             const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
             if (speed > 2) {
                 p.vx = (p.vx / speed) * 2;
                 p.vy = (p.vy / speed) * 2;
             }
             
-            // Desenhar partícula
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
             ctx.fillStyle = p.color;
             ctx.fill();
             
-            // Desenhar conexões entre partículas próximas
             for (let j = i + 1; j < particles.length; j++) {
                 const p2 = particles[j];
                 const dx = p2.x - p.x;
@@ -407,12 +345,9 @@ function initHeroBackground() {
         
         requestAnimationFrame(animate);
     }
-    
-    // Iniciar animação
     animate();
 }
 
-// Exportar funções para uso em outros arquivos
 window.WebGLBackgrounds = {
     initExpertiseBackground,
     animateExpertiseBackground,

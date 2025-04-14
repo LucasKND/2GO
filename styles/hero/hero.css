@@ -113,7 +113,7 @@ header {
     position: relative;
     transform: translate(0, 0);
     will-change: transform;
-    white-space: nowrap; /* Impede a quebra de linha do texto */
+    white-space: nowrap;
 }
 
 .primary-button {
@@ -250,7 +250,6 @@ header {
     50% { box-shadow: 0 0 12px rgba(255, 58, 58, 0.5); }
 }
 
-/* Media Queries */
 @media (max-width: 1024px) {
     .hero-scroll-indicator {
         display: none;
@@ -302,7 +301,17 @@ header {
     }
 
     .hero-rocket-container {
-        width: 70%;
+        display: none;
+    }
+    
+    .hero-content {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
     }
 }
 
