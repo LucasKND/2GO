@@ -1,214 +1,60 @@
-/* Estilos para a seção de Serviços */
-
-/* Modern Glass-Morphism Service Cards */
 #services {
     position: relative;
+    background: inherit;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 0;
     overflow: hidden;
-    background: inherit; /* Voltando ao background original */
-    position: relative;
 }
 
-/* Estilos para o efeito de estrelas cadentes */
-.stars {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120%;
-    transform: rotate(-45deg);
-    z-index: 1;
-    overflow: hidden; /* Garante que as estrelas fora da área não sejam visíveis */
-}
-
-.star {
-    --star-color: var(--primary-color);
-    --star-tail-length: 6em;
-    --star-tail-height: 2px;
-    --star-width: calc(var(--star-tail-length) / 6);
-    --fall-duration: 9s;
-    --tail-fade-duration: var(--fall-duration);
-
-    position: absolute;
-    top: var(--top-offset);
-    left: 0;
-    width: var(--star-tail-length);
-    height: var(--star-tail-height);
-    color: var(--star-color);
-    background: linear-gradient(45deg, currentColor, transparent);
-    border-radius: 50%;
-    filter: drop-shadow(0 0 6px currentColor);
-    opacity: 0.9; /* Adicionando 90% de opacidade (redução de 10%) */
-    transform: translate3d(150em, 0, 0); /* Posicionando mais longe da tela inicial */
-    animation: fall var(--fall-duration) var(--fall-delay) linear infinite, 
-              tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
-}
-
-/* Posição e duração para cada estrela - mais espalhadas pela tela */
-.star:nth-child(1) { --star-tail-length: 5.17em; --top-offset: 5vh; --fall-duration: 7.28s; --fall-delay: 9.14s; }
-.star:nth-child(2) { --star-tail-length: 6.42em; --top-offset: 15vh; --fall-duration: 9.96s; --fall-delay: 1.56s; }
-.star:nth-child(3) { --star-tail-length: 5.74em; --top-offset: 25vh; --fall-duration: 7.27s; --fall-delay: 6.25s; }
-.star:nth-child(4) { --star-tail-length: 7.23em; --top-offset: 35vh; --fall-duration: 8.33s; --fall-delay: 3.46s; }
-.star:nth-child(5) { --star-tail-length: 5.12em; --top-offset: 45vh; --fall-duration: 11.98s; --fall-delay: 4.92s; }
-.star:nth-child(6) { --star-tail-length: 6.32em; --top-offset: 55vh; --fall-duration: 9.46s; --fall-delay: 5.48s; }
-.star:nth-child(7) { --star-tail-length: 6.19em; --top-offset: 65vh; --fall-duration: 8.98s; --fall-delay: 9.07s; }
-.star:nth-child(8) { --star-tail-length: 5.51em; --top-offset: 75vh; --fall-duration: 10.08s; --fall-delay: 3.41s; }
-.star:nth-child(9) { --star-tail-length: 6.88em; --top-offset: 85vh; --fall-duration: 11.65s; --fall-delay: 7.71s; }
-.star:nth-child(10) { --star-tail-length: 5.93em; --top-offset: 95vh; --fall-duration: 7.65s; --fall-delay: 2.12s; }
-.star:nth-child(11) { --star-tail-length: 6.57em; --top-offset: 10vh; --fall-duration: 9.15s; --fall-delay: 6.56s; }
-.star:nth-child(12) { --star-tail-length: 7.12em; --top-offset: 20vh; --fall-duration: 8.02s; --fall-delay: 8.8s; }
-.star:nth-child(13) { --star-tail-length: 6.63em; --top-offset: 30vh; --fall-duration: 10.54s; --fall-delay: 4.17s; }
-.star:nth-child(14) { --star-tail-length: 5.38em; --top-offset: 40vh; --fall-duration: 11.23s; --fall-delay: 1.79s; }
-.star:nth-child(15) { --star-tail-length: 6.45em; --top-offset: 50vh; --fall-duration: 9.69s; --fall-delay: 0.55s; }
-.star:nth-child(16) { --star-tail-length: 5.83em; --top-offset: 60vh; --fall-duration: 8.51s; --fall-delay: 6.07s; }
-.star:nth-child(17) { --star-tail-length: 6.77em; --top-offset: 70vh; --fall-duration: 10.75s; --fall-delay: 3.24s; }
-.star:nth-child(18) { --star-tail-length: 5.29em; --top-offset: 80vh; --fall-duration: 7.89s; --fall-delay: 5.73s; }
-.star:nth-child(19) { --star-tail-length: 6.94em; --top-offset: 90vh; --fall-duration: 9.37s; --fall-delay: 9.48s; }
-.star:nth-child(20) { --star-tail-length: 5.67em; --top-offset: 8vh; --fall-duration: 8.15s; --fall-delay: 2.38s; }
-.star:nth-child(21) { --star-tail-length: 6.51em; --top-offset: 18vh; --fall-duration: 11.45s; --fall-delay: 7.32s; }
-.star:nth-child(22) { --star-tail-length: 5.44em; --top-offset: 28vh; --fall-duration: 10.32s; --fall-delay: 4.59s; }
-.star:nth-child(23) { --star-tail-length: 6.82em; --top-offset: 38vh; --fall-duration: 9.81s; --fall-delay: 1.22s; }
-.star:nth-child(24) { --star-tail-length: 5.75em; --top-offset: 48vh; --fall-duration: 8.67s; --fall-delay: 5.89s; }
-.star:nth-child(25) { --star-tail-length: 6.39em; --top-offset: 58vh; --fall-duration: 7.48s; --fall-delay: 3.63s; }
-.star:nth-child(26) { --star-tail-length: 5.91em; --top-offset: 68vh; --fall-duration: 10.86s; --fall-delay: 8.28s; }
-.star:nth-child(27) { --star-tail-length: 6.68em; --top-offset: 78vh; --fall-duration: 9.23s; --fall-delay: 6.43s; }
-.star:nth-child(28) { --star-tail-length: 5.36em; --top-offset: 88vh; --fall-duration: 8.59s; --fall-delay: 2.86s; }
-.star:nth-child(29) { --star-tail-length: 6.25em; --top-offset: 13vh; --fall-duration: 11.12s; --fall-delay: 7.94s; }
-.star:nth-child(30) { --star-tail-length: 5.58em; --top-offset: 23vh; --fall-duration: 9.73s; --fall-delay: 4.35s; }
-.star:nth-child(31) { --star-tail-length: 6.96em; --top-offset: 33vh; --fall-duration: 8.21s; --fall-delay: 1.04s; }
-.star:nth-child(32) { --star-tail-length: 5.82em; --top-offset: 43vh; --fall-duration: 7.57s; --fall-delay: 5.19s; }
-.star:nth-child(33) { --star-tail-length: 6.43em; --top-offset: 53vh; --fall-duration: 10.28s; --fall-delay: 9.29s; }
-.star:nth-child(34) { --star-tail-length: 5.53em; --top-offset: 63vh; --fall-duration: 8.92s; --fall-delay: 3.82s; }
-.star:nth-child(35) { --star-tail-length: 6.71em; --top-offset: 73vh; --fall-duration: 11.76s; --fall-delay: 6.62s; }
-.star:nth-child(36) { --star-tail-length: 5.64em; --top-offset: 83vh; --fall-duration: 9.08s; --fall-delay: 2.71s; }
-.star:nth-child(37) { --star-tail-length: 6.87em; --top-offset: 93vh; --fall-duration: 7.78s; --fall-delay: 8.37s; }
-.star:nth-child(38) { --star-tail-length: 5.24em; --top-offset: 3vh; --fall-duration: 10.67s; --fall-delay: 4.76s; }
-.star:nth-child(39) { --star-tail-length: 6.33em; --top-offset: 16vh; --fall-duration: 9.84s; --fall-delay: 1.37s; }
-.star:nth-child(40) { --star-tail-length: 5.72em; --top-offset: 26vh; --fall-duration: 11.34s; --fall-delay: 7.17s; }
-.star:nth-child(41) { --star-tail-length: 6.56em; --top-offset: 36vh; --fall-duration: 8.29s; --fall-delay: 3.04s; }
-.star:nth-child(42) { --star-tail-length: 5.47em; --top-offset: 46vh; --fall-duration: 9.57s; --fall-delay: 6.31s; }
-.star:nth-child(43) { --star-tail-length: 6.78em; --top-offset: 56vh; --fall-duration: 10.13s; --fall-delay: 2.53s; }
-.star:nth-child(44) { --star-tail-length: 5.86em; --top-offset: 66vh; --fall-duration: 8.73s; --fall-delay: 5.31s; }
-.star:nth-child(45) { --star-tail-length: 6.48em; --top-offset: 76vh; --fall-duration: 7.42s; --fall-delay: 8.91s; }
-.star:nth-child(46) { --star-tail-length: 5.35em; --top-offset: 86vh; --fall-duration: 11.67s; --fall-delay: 4.83s; }
-.star:nth-child(47) { --star-tail-length: 6.63em; --top-offset: 6vh; --fall-duration: 9.43s; --fall-delay: 1.64s; }
-.star:nth-child(48) { --star-tail-length: 5.68em; --top-offset: 22vh; --fall-duration: 8.57s; --fall-delay: 5.95s; }
-.star:nth-child(49) { --star-tail-length: 6.93em; --top-offset: 42vh; --fall-duration: 10.93s; --fall-delay: 7.53s; }
-.star:nth-child(50) { --star-tail-length: 5.41em; --top-offset: 62vh; --fall-duration: 9.78s; --fall-delay: 3.73s; }
-
-/* Criação da estrela com pseudo-elementos */
-.star::before, .star::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: calc(var(--star-width) / -2);
-    width: var(--star-width);
-    height: 100%;
-    background: linear-gradient(45deg, transparent, currentColor, transparent);
-    border-radius: inherit;
-    opacity: 0.9; /* Adicionando 90% de opacidade (redução de 10%) */
-    animation: blink 2s linear infinite;
-}
-
-.star::before {
-    transform: rotate(45deg);
-}
-
-.star::after {
-    transform: rotate(-45deg);
-}
-
-/* Animações para o efeito de estrelas cadentes */
-@keyframes fall {
-    from {
-        transform: translate3d(150em, 0, 0); /* Começa totalmente fora da tela */
-    }
-    to {
-        transform: translate3d(-30em, 0, 0); /* Termina fora da tela do lado oposto */
-    }
-}
-
-@keyframes tail-fade {
-    0%, 50% {
-        width: var(--star-tail-length);
-        opacity: 1;
-    }
-
-    70%, 80% {
-        width: 0;
-        opacity: 0.4;
-    }
-
-    100% {
-        width: 0;
-        opacity: 0;
-    }
-}
-
-@keyframes blink {
-    50% {
-        opacity: 0.6;
-    }
-}
-
-/* Ajustes responsivos para o efeito de estrelas */
-@media screen and (max-width: 750px) {
-    .star {
-        animation: fall var(--fall-duration) var(--fall-delay) linear infinite;
-    }
-}
-
-/* Simple subtle background overlay */
+/* Removendo o gradiente do centro */
 #services::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, 
-        rgba(var(--primary-dark), 0.05) 0%, 
-        rgba(var(--primary-color), 0.02) 100%
-    );
-    z-index: var(--z-tooltip);
+    display: none;
 }
 
-/* Gradient transition at the bottom of services section */
-#services::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    background: linear-gradient(to bottom, 
-        transparent 0%,
-        var(--cases-bg-color, inherit) 100%);
+#services .section-title,
+#services .section-subtitle {
+    color: #fff;
+    position: relative;
     z-index: 2;
-    pointer-events: none;
+}
+
+#services .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .services-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
-    z-index: 3;
+    z-index: 2;
 }
 
-.service-card {
+.box {
     position: relative;
-    width: 320px;
-    height: 400px;
+    width: 280px;
+    height: 380px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 40px 30px;
     transition: 0.5s;
+    z-index: 1;
+    margin: 0 auto;
 }
 
-.service-card::before {
+.box::before {
     content: '';
     position: absolute;
     top: 0;
@@ -221,7 +67,7 @@
     transition: 0.5s;
 }
 
-.service-card::after {
+.box::after {
     content: '';
     position: absolute;
     top: 0;
@@ -235,45 +81,43 @@
     filter: blur(30px);
 }
 
-.service-card:hover::before,
-.service-card:hover::after {
-    transform: skewX(0deg);
-    left: 20px;
-    width: calc(100% - 90px);
+.box:hover:before,
+.box:hover:after {
+    transform: skewX(0deg) scaleX(1.3);
+    left: 67px; /* Movendo mais para a direita no hover */
 }
 
-/* Generating different gradient colors for each card */
-.service-card:nth-child(1)::before,
-.service-card:nth-child(1)::after {
-    background: linear-gradient(315deg, #cc0000, #ff0058);
+.box:nth-child(1):before,
+.box:nth-child(1):after {
+    background: linear-gradient(315deg, var(--primary-color), #ff0058)
 }
 
-.service-card:nth-child(2)::before,
-.service-card:nth-child(2)::after {
-    background: linear-gradient(315deg, #ff3300, #cc0000);
+.box:nth-child(2):before,
+.box:nth-child(2):after {
+    background: linear-gradient(315deg, #ff3300, var(--primary-color))
 }
 
-.service-card:nth-child(3)::before,
-.service-card:nth-child(3)::after {
-    background: linear-gradient(315deg, #cc0000, #990000);
+.box:nth-child(3):before,
+.box:nth-child(3):after {
+    background: linear-gradient(315deg, var(--primary-color), #990000)
 }
 
-.service-card:nth-child(4)::before,
-.service-card:nth-child(4)::after {
-    background: linear-gradient(315deg, #ff0058, #cc0000);
+.box:nth-child(4):before,
+.box:nth-child(4):after {
+    background: linear-gradient(315deg, #ff0058, var(--primary-color))
 }
 
-.service-card:nth-child(5)::before,
-.service-card:nth-child(5)::after {
-    background: linear-gradient(315deg, #cc0000, #ff3333);
+.box:nth-child(5):before,
+.box:nth-child(5):after {
+    background: linear-gradient(315deg, var(--primary-color), #ff3333)
 }
 
-.service-card:nth-child(6)::before,
-.service-card:nth-child(6)::after {
-    background: linear-gradient(315deg, #a10000, #cc0000);
+.box:nth-child(6):before,
+.box:nth-child(6):after {
+    background: linear-gradient(315deg, #a10000, var(--primary-color))
 }
 
-.service-card span {
+.box span {
     display: block;
     position: absolute;
     top: 0;
@@ -284,50 +128,25 @@
     pointer-events: none;
 }
 
-.service-card span::before {
+.box span::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 0;
-    height: 0;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    opacity: 0;
-    transition: 0.1s;
-    animation: animate 2s ease-in-out infinite;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
-
-.service-card:hover span::before {
-    top: -50px;
-    left: 50px;
-    width: 100px;
-    height: 100px;
-    opacity: 1;
-}
-
-.service-card span::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
     width: 100%;
     height: 100%;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     opacity: 0;
-    transition: 0.5s;
+    transition: 0.1s;
     animation: animate 2s ease-in-out infinite;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    animation-delay: -1s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
-.service-card:hover span::after {
+.box:hover span:after {
     bottom: -50px;
-    right: 50px;
+    right: 100px; /* Aumentado de 50px para 100px para manter a simetria */
     width: 100px;
     height: 100px;
     opacity: 1;
@@ -342,135 +161,86 @@
     }
 }
 
-.service-content {
+.box .content {
     position: relative;
-    left: 0;
-    padding: 20px 40px;
-    background: rgba(var(--bg-light), 0.05);
+    width: 240px;
+    height: 340px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    box-shadow: var(--shadow-md);
-    border-radius: var(--border-radius-md);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     z-index: 1;
-    transition: var(--transition-normal);
-    color: var(--text-light);
+    transform: 0.5s;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Mudando de center para flex-start */
+    text-align: left; /* Mudando de center para left */
 }
 
-.service-card:hover .service-content {
-    left: -25px;
-    padding: 60px 40px;
-}
-
-.service-content h3 {
-    font-size: 2em;
+.box .content h2 {
+    font-size: 1.8rem;
     color: #fff;
     margin-bottom: 10px;
+    text-align: left; /* Garantindo que o título também fique alinhado à esquerda */
 }
 
-.service-content p {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    line-height: 1.4em;
+.box .content p {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-align: left; /* Garantindo que o parágrafo também fique alinhado à esquerda */
 }
 
-.service-content a {
+.box .content a {
     display: inline-block;
-    font-size: 1.1em;
-    color: #111;
+    padding: 8px 20px;
     background: #fff;
-    padding: 10px;
+    color: var(--primary-color);
     border-radius: 4px;
     text-decoration: none;
     font-weight: 700;
     margin-top: 15px;
+    transition: 0.3s;
 }
 
-.service-content a:hover {
-    background: #ff3333;
+.box .content a:hover {
+    background: var(--primary-color);
     color: #fff;
-    border: 1px solid rgba(255, 0, 0, 0.4);
-    box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
 }
 
-/* Service icon styling */
-.service-icon {
-    display: none; /* Hide the original icon container */
-}
-
-/* Make section title and subtitle visible over the dark background */
-#services .section-title,
-#services .section-subtitle {
-    color: #fff;
-    position: relative;
-    z-index: 3;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-}
-
-/* Animated gradient for "Destino" in the title - matching the metrics red color */
-@property --k {
-    syntax: '<number>';
-    initial-value: 0;
-    inherits: false;
-}
-
-.gradient-text {
-    --k: 0;
-    background: linear-gradient(90deg, 
-        #ff0100 calc(var(--k) * 100%),
-        #eb0100 calc(var(--k) * 100% + 50%),
-        #ff0100 calc(var(--k) * 100% + 100%));
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    filter: url(#glow-filter);
-    animation: gradient-shift 3s linear infinite;
-}
-
-@keyframes gradient-shift {
-    to {
-        --k: 1;
+@media screen and (max-width: 1200px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
 }
 
-/* Make section title white static text */
-#services .section-title {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    position: relative;
-    z-index: 3;
-}
-
-/* Responsive adjustments */
 @media screen and (max-width: 768px) {
-    .service-card {
-        width: 280px;
-        height: 380px;
-        margin: 30px 20px;
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
     
-    .service-content h3 {
-        font-size: 1.8em;
+    .box {
+        width: 260px;
+        height: 360px;
     }
     
-    .service-content p {
-        font-size: 1em;
+    .box .content {
+        width: 220px;
+        height: 320px;
+        padding: 15px;
     }
     
-    /* Aumentar z-index do conteúdo nos dispositivos móveis */
-    .service-content {
-        z-index: 10;
-        pointer-events: auto;
+    .box .content h2 {
+        font-size: 1.5rem;
     }
     
-    /* Garantir que os links sejam clicáveis */
-    .service-content a {
-        position: relative;
-        z-index: 15;
-        pointer-events: auto;
-    }
-    
-    /* Ajustes para evitar deslocamento excessivo em hover que pode dificultar o toque */
-    .service-card:hover .service-content {
-        left: -15px;
-        padding: 40px 30px;
+    .box .content p {
+        font-size: 0.9rem;
     }
 }

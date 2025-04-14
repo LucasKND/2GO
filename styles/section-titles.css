@@ -24,7 +24,6 @@
     color: #C62828;
 }
 
-/* Animation keyframes preserved for hero section only */
 @keyframes titleReveal {
     to {
         opacity: 1;
@@ -44,7 +43,6 @@
     50% { transform: translateY(-5px); }
 }
 
-/* Reveal animations for sections */
 .reveal-element {
     opacity: 0;
     transform: translateY(30px);
@@ -67,10 +65,4 @@
     background: transparent;
     border: 1px solid #D32F2F;
     color: #8E0000;
-}
-
-/* Special styles only for hero section */
-.hero-content .section-title,
-.hero-content .section-subtitle {
-    /* Special hero styling here */
 }

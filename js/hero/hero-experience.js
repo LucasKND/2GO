@@ -906,22 +906,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const nextSection = document.getElementById('metrics');
             
             if (nextSection) {
-                // Animar a rolagem com GSAP para uma transição elegante
+                // Animar a rolagem com GSAP para uma transição mais suave
                 gsap.to(window, {
-                    duration: 1.5, 
+                    duration: 1, // Reduzido de 1.5 para 1 segundo
                     scrollTo: {
                         y: nextSection,
-                        offsetY: 80
+                        offsetY: 80,
+                        autoKill: false // Previne que outras ações de scroll interrompam a animação
                     },
-                    ease: "power3.inOut"
+                    ease: "power2.inOut" // Mudado para uma curva de aceleração mais suave
                 });
                 
-                // Adicionar um efeito visual ao clicar
+                // Efeito visual mais suave ao clicar
                 gsap.to(scrollIndicator, {
-                    duration: 0.2,
-                    scale: 0.9,
+                    duration: 0.3, // Aumentado de 0.2 para 0.3
+                    scale: 0.95, // Reduzido de 0.9 para 0.95 para um efeito mais sutil
                     yoyo: true,
-                    repeat: 1
+                    repeat: 1,
+                    ease: "power2.inOut"
                 });
             }
         });

@@ -1,29 +1,38 @@
 /* Estilos para o Footer */
 
 footer {
-    background-color: var(--bg-darker);
+    background: inherit;
     padding: var(--spacing-lg) 0 var(--spacing-sm);
     position: relative;
     color: var(--text-light);
     overflow: hidden;
 }
 
-/* Elemento decorativo inovador */
+/* Gradiente com bordas mais suaves e transição mais gradual */
 footer::before {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, 
-        var(--primary-color) 0%, 
-        var(--accent-color) 25%, 
-        var(--primary-color) 50%, 
-        var(--accent-color) 75%, 
-        var(--primary-color) 100%);
-    animation: gradient-shift 8s linear infinite;
-    box-shadow: 0 0 15px rgba(255, 58, 58, 0.6);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at bottom center,
+        rgba(255, 0, 0, 0.12) 0%,
+        rgba(255, 0, 0, 0.08) 30%,
+        rgba(255, 0, 0, 0.04) 50%,
+        rgba(255, 0, 0, 0.02) 65%,
+        transparent 75%
+    );
+    z-index: 1;
+    filter: blur(20px);
+}
+
+/* Garantindo que o conteúdo fique acima do gradiente */
+.footer-content, .footer-bottom {
+    position: relative;
+    z-index: 2;
 }
 
 @keyframes gradient-shift {
