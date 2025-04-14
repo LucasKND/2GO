@@ -1,114 +1,408 @@
-/* Estilos para a seção de Depoimentos */
+/* Estilos para a seção de Depoimentos com cards laterais desfocados */
 
 #testimonials {
     background-color: var(--bg-dark);
     position: relative;
+    padding: var(--spacing-xl) 0;
+    overflow-x: visible; /* Permitir que os cards laterais sejam visíveis */
+    overflow-y: hidden; /* Evitar scroll vertical indesejado */
+    min-height: 500px;
+    width: 100%;
+    transition: height 0.5s ease; /* Transição suave para ajuste de altura */
 }
 
-.testimonials-container {
-    max-width: 900px;
-    margin: var(--spacing-lg) auto 0;
+#testimonials .section-title h2 span {
+    color: #ff3a3a; /* Destaque em vermelho para "clientes" */
 }
 
-.testimonial-wrapper {
+/* Container principal do carrossel */
+.testimonials-carousel {
     position: relative;
-    overflow: hidden;
-    min-height: 300px;
+    max-width: 1600px; /* Aumentado para acomodar cards mais largos */
+    margin: 0 auto;
+    padding-top: var(--spacing-lg);
+    transform-style: preserve-3d;
+    overflow: visible; /* Permitir que os cards sejam visíveis */
+    transition: height 0.5s ease; /* Transição suave para altura do carrossel */
 }
 
-.testimonial {
+/* Track que contém os slides */
+.testimonial-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 350px;
+    perspective: 1200px;
+    transition: all 0.4s ease;
+    width: 100%; /* Garantir largura total */
+    overflow: visible; /* Permitir que elementos transformados sejam visíveis */
+}
+
+/* Estilo para o novo track durante a transição */
+.testimonial-track.new-track {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     opacity: 0;
-    visibility: hidden;
-    transform: translateX(50px);
-    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
 }
 
-.testimonial.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0);
-}
-
-.testimonial-content {
-    background-color: var(--bg-light);
-    border-radius: var(--border-radius-md);
-    padding: var(--spacing-md);
-    box-shadow: var(--shadow-md);
-    position: relative;
-}
-
-.testimonial-content::after {
-    content: '\f10e';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
+/* Estilo comum para todos os slides */
+.testimonial-slide {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    color: var(--primary-color);
-    opacity: 0.2;
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    z-index: 1; /* Base z-index para todos os slides */
+}
+
+/* Slide ativo (central) */
+.active-slide {
+    z-index: 3;
+    transform: scale(1) translateX(0) rotateY(0deg);
+}
+
+/* Slide anterior (esquerda) */
+.prev-slide {
+    z-index: 2;
+    transform: scale(0.8) translateX(-80%) rotateY(0deg);
+    opacity: 0.7;
+    pointer-events: auto; /* Permitir interações */
+}
+
+/* Slide próximo (direita) */
+.next-slide {
+    z-index: 2;
+    transform: scale(0.8) translateX(80%) rotateY(0deg);
+    opacity: 0.7;
+    pointer-events: auto; /* Permitir interações */
+}
+
+/* Classes para animar a transição */
+.slide-exit {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.slide-enter {
+    opacity: 0;
+    transform: scale(1.1) translateY(-20px);
+    transition: all 0.4s ease;
+}
+
+.slide-active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: all 0.6s ease;
+}
+
+/* Estilo do card de depoimento */
+.testimonial-card {
+    background-color: #1f1f27; /* Cor de fundo escura como na imagem */
+    border-radius: 10px;
+    padding: 40px 50px; /* Padding horizontal maior para dar mais largura interna */
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    width: 650px; /* Aumentado para tornar o card mais retangular */
+    margin: 0 auto;
+    transition: all 0.5s ease;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    border: 1px solid rgba(255, 58, 58, 0.3); /* Borda vermelha sutil */
+    height: auto; /* Altura baseada no conteúdo */
+    max-height: 500px; /* Altura máxima do card não expandido */
+    transition: max-height 0.5s ease; /* Transição suave */
+}
+
+/* Quando o card está expandido */
+.testimonial-card.expanded {
+    max-height: 800px; /* Altura máxima maior quando expandido */
+    z-index: 10; /* Garantir que fique acima de outros elementos */
+}
+
+.testimonial-card.pre-animation {
+    opacity: 1;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    transform: scale(1);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.active-slide .testimonial-card,
+.prev-slide .testimonial-card,
+.next-slide .testimonial-card {
+    transform: translateY(0);
+}
+
+/* Ícone de citação */
+.quote-icon {
+    color: #ff3a3a; /* Vermelho para UI vermelha */
+    font-size: 32px;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+/* Conteúdo do depoimento */
+.testimonial-content {
+    margin-bottom: 30px;
+    transition: max-height 0.5s ease; /* Transição suave para conteúdo expandido */
+    overflow: hidden; /* Esconde conteúdo expandido */
 }
 
 .testimonial-content p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: var(--spacing-md);
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #ffffff;
     font-style: italic;
-    color: var(--text-light);
+    margin-bottom: 10px; /* Espaçamento consistente */
 }
 
-.testimonial-author {
-    display: flex;
-    align-items: center;
-}
-
-.testimonial-author img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-right: var(--spacing-sm);
-    object-fit: cover;
-}
-
-.testimonial-author h4 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
-.testimonial-author p {
+/* Botão "Ver mais" para expandir texto */
+.read-more-btn {
+    background-color: rgba(255, 58, 58, 0.2); /* Fundo vermelho semi-transparente */
+    border: 1px solid #ff3a3a; /* Borda vermelha */
+    color: #ff3a3a; /* Texto vermelho */
+    border-radius: 20px;
+    padding: 5px 15px;
     font-size: 0.9rem;
-    color: var(--text-muted);
-    margin: 0;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.testimonial-dots {
+.read-more-btn:hover {
+    background-color: #ff3a3a;
+    color: #ffffff;
+}
+
+.read-more-btn i {
+    transition: transform 0.3s ease;
+}
+
+.read-more-btn.expanded i {
+    transform: rotate(180deg);
+}
+
+/* Texto expandível */
+.short-text {
+    margin-bottom: 0;
+}
+
+.full-text {
+    overflow: hidden;
+    transition: all 0.5s ease;
+    max-height: 0; /* Altura zero quando fechado */
+    opacity: 0;
+    margin-top: 0;
+    display: block; /* Garantir que seja um elemento de bloco */
+    visibility: hidden; /* Inicialmente oculto */
+}
+
+.full-text.expanded {
+    max-height: 500px; /* Aumentado para garantir que caiba todo o texto */
+    opacity: 1;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    visibility: visible; /* Tornar visível quando expandido */
+}
+
+/* Autor do depoimento */
+.testimonial-author {
+    margin-top: 25px;
+}
+
+.testimonial-author h3 {
+    font-size: 2.2rem;
+    margin: 0 0 5px 0;
+    color: #ff3a3a; /* Nome em vermelho como na imagem */
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.testimonial-author span {
+    display: block;
+    font-size: 0.95rem;
+    color: #aaaaaa;
+}
+
+/* Esconder depoimentos de dados para JavaScript */
+.hidden-testimonials {
+    display: none;
+}
+
+/* Navegação entre depoimentos */
+.testimonial-navigation {
     display: flex;
     justify-content: center;
-    margin-top: var(--spacing-md);
+    align-items: center;
+    margin-top: 40px;
+    position: relative;
+    z-index: 5;
 }
 
-.dot {
-    width: 12px;
+/* Estilo para os botões de navegação - destacando a UI vermelha */
+.nav-arrow {
+    background: rgba(255, 58, 58, 0.2); /* Fundo vermelho semi-transparente */
+    border: 1px solid #ff3a3a; /* Borda vermelha sólida */
+    color: #ff3a3a; /* Cor vermelha para o ícone */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    margin: 0 15px;
+    z-index: 5;
+    box-shadow: 0 5px 15px rgba(255, 58, 58, 0.25); /* Sombra vermelha */
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-arrow:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 58, 58, 0.35);
+    color: #ffffff;
+    background: #ff3a3a;
+}
+
+.nav-arrow:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 3px 10px rgba(255, 58, 58, 0.2);
+}
+
+.nav-arrow i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+/* Indicadores de slides com destaque vermelho */
+.testimonial-indicators {
+    display: flex;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.indicator {
+    width: 12px; /* Tamanho como na imagem */
     height: 12px;
     border-radius: 50%;
-    background-color: var(--accent-light);
-    margin: 0 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 8px;
     cursor: pointer;
-    transition: var(--transition-normal);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
 }
 
-.dot.active {
-    background-color: var(--primary-color);
+.indicator.active {
+    background-color: #ff3a3a; /* Vermelho sólido para indicador ativo */
     transform: scale(1.2);
+    box-shadow: 0 0 10px 2px rgba(255, 58, 58, 0.5); /* Brilho vermelho */
 }
 
 /* Responsividade */
+@media (max-width: 1400px) {
+    .testimonial-card {
+        width: 600px;
+        padding: 35px 45px;
+    }
+    
+    .prev-slide {
+        transform: scale(0.75) translateX(-75%);
+    }
+    
+    .next-slide {
+        transform: scale(0.75) translateX(75%);
+    }
+}
+
+@media (max-width: 1200px) {
+    .testimonial-card {
+        width: 550px;
+        padding: 35px 40px;
+    }
+    
+    .prev-slide {
+        transform: scale(0.7) translateX(-70%);
+    }
+    
+    .next-slide {
+        transform: scale(0.7) translateX(70%);
+    }
+}
+
+@media (max-width: 992px) {
+    .testimonial-card {
+        width: 500px;
+        padding: 30px 35px;
+    }
+    
+    .prev-slide {
+        transform: scale(0.65) translateX(-65%);
+        opacity: 0.5;
+    }
+    
+    .next-slide {
+        transform: scale(0.65) translateX(65%);
+        opacity: 0.5;
+    }
+    
+    .testimonial-content p {
+        font-size: 1.1rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .testimonial-track {
+        min-height: 300px;
+    }
+    
+    .testimonial-card {
+        width: 420px;
+        padding: 25px 30px;
+    }
+    
+    .prev-slide {
+        transform: scale(0.6) translateX(-60%);
+    }
+    
+    .next-slide {
+        transform: scale(0.6) translateX(60%);
+    }
+    
     .testimonial-content p {
         font-size: 1rem;
+    }
+    
+    .testimonial-author h3 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .testimonial-card {
+        width: 350px;
+        padding: 20px 25px;
+    }
+    
+    .prev-slide, .next-slide {
+        display: none;
+    }
+    
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
     }
 }

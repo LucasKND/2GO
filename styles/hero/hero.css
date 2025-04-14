@@ -52,6 +52,13 @@ header {
     justify-content: center;
 }
 
+.hero .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
 /* Estilos para o título com efeito glitch */
 .glitch-title {
     font-size: 3.5rem;
@@ -180,12 +187,26 @@ header {
     position: relative;
     width: 40%;
     z-index: 5;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 3s forwards 3.4s;
 }
 
 #rocket-3d-container {
     position: relative;
     width: 100%;
     height: 400px;
+}
+
+.hero-rocket {
+    width: 100%;
+    max-width: 280px; /* Reduzido de 400px para 300px */
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(255, 58, 58, 0.3));
 }
 
 .rocket-trail {
@@ -326,6 +347,7 @@ a, button, .interactive {
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s forwards 0.5s;
+    flex: 1;
 }
 
 .hero-title {
@@ -509,6 +531,15 @@ a, button, .interactive {
     .hero-buttons {
         justify-content: center;
     }
+
+    .hero .container {
+        flex-direction: column;
+    }
+
+    .hero-rocket-container {
+        width: 50%; /* Reduzido de 60% para 50% */
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 576px) {
@@ -547,6 +578,10 @@ a, button, .interactive {
     /* Ocultar o indicador de scroll (EXPLORE e ícone do mouse) em tablets e celulares */
     .hero-scroll-indicator {
         display: none;
+    }
+
+    .hero-rocket-container {
+        width: 70%; /* Reduzido de 80% para 70% */
     }
 }
 

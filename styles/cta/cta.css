@@ -6,6 +6,13 @@
     color: var(--text-light);
     position: relative;
     overflow: hidden;
+    z-index: 1;
+}
+
+/* Removendo os círculos estáticos dos cantos */
+#main-cta::before,
+#main-cta::after {
+    display: none; /* Esconde os círculos estáticos */
 }
 
 .cta-container {
@@ -13,6 +20,8 @@
     padding: var(--spacing-lg) 0;
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .cta-container h2 {
@@ -27,6 +36,76 @@
     opacity: 0.9;
 }
 
+/* Botão Launch estilizado */
+.launch-button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 1em 1.5em 1em 1.2em;
+    color: var(--primary-color);
+    background: white;
+    border: none;
+    letter-spacing: 0.05em;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.launch-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transition: left 0.7s ease;
+}
+
+.launch-button svg {
+    margin-right: 8px;
+    transform: rotate(30deg);
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    width: 20px;
+    height: 20px;
+    color: var(--primary-color);
+    position: relative;
+    z-index: 1;
+}
+
+.launch-button span {
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+}
+
+.launch-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.launch-button:hover::before {
+    left: 100%;
+}
+
+.launch-button:hover svg {
+    transform: translateX(5px) rotate(90deg);
+}
+
+.launch-button:hover span {
+    transform: translateX(7px);
+}
+
+/* Botão CTA original (mantido para compatibilidade) */
 .cta-container .cta-button {
     background-color: var(--text-light);
     color: var(--primary-color);
@@ -47,27 +126,60 @@
     box-shadow: var(--shadow-lg);
 }
 
-/* Efeito decorativo */
-#main-cta::before,
-#main-cta::after {
-    content: '';
+/* UI avançada para o fundo da seção CTA */
+.cta-background-effects {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.1);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Removendo os floating-elements */
+.floating-elements {
+    display: none; /* Ocultar todas as bolas animadas */
+}
+
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+}
+
+/* Pontinhos de estrelas no fundo */
+.star-dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.star-dot {
+    position: absolute;
+    width: 1.5px;
+    height: 1.5px;
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
+    animation: subtleTwinkle 5s infinite alternate;
 }
 
-#main-cta::before {
-    width: 300px;
-    height: 300px;
-    top: -150px;
-    left: -150px;
-}
-
-#main-cta::after {
-    width: 200px;
-    height: 200px;
-    bottom: -100px;
-    right: -100px;
+/* Animação mais sutil para as estrelas */
+@keyframes subtleTwinkle {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
 }
 
 /* Responsividade */
